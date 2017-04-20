@@ -2,6 +2,7 @@ package com.springboot.properties;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import sun.misc.Contended;
 
 /**
@@ -9,6 +10,7 @@ import sun.misc.Contended;
  */
 @Configuration
 @ComponentScan("com.springboot")
+@EnableAspectJAutoProxy
 public class ConfigProperties {
 
 }

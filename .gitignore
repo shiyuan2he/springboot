@@ -1,6 +1,6 @@
 spring-boot/.idea/*
 spring-boot/target/*
-
+spring-boot/spring-boot.iml
 *.class
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
