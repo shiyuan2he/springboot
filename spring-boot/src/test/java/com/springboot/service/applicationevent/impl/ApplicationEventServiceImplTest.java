@@ -1,4 +1,4 @@
-package com.springboot.service.aop.impl;
+package com.springboot.service.applicationevent.impl;
 
 import com.springboot.annotation.ConfigProperties;
 import org.junit.Test;
@@ -8,23 +8,21 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @author heshiyuan
  * @author shiyuan2he
  * @description <p></p>
- * @path spring-boot/com.springboot.aop
- * @date 2017/4/20 下午7:16
+ * @path spring-boot/com.springboot.service.applicationevent.impl
+ * @date 2017/4/21 下午5:56
  * @github http://github.com/shiyuan2he
  * @email shiyuan4work@sina.com
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-public class LoginServiceTest {
+public class ApplicationEventServiceImplTest {
 
     @Test
-    public void testLogin(){
-        AnnotationConfigApplicationContext context =
+    public void testApplicationEvnet(){
+         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ConfigProperties.class) ;
-        LoginServiceImpl loginServiceImpl = context.getBean(LoginServiceImpl.class) ;
-        RegisterServiceImpl registerServiceImpl = context.getBean(RegisterServiceImpl.class) ;
-        loginServiceImpl.login("admin","123");
-        registerServiceImpl.testLogin("admin","123");
+        CustomApplicationPublisherServiceImpl customApplicationPublisherService = context.getBean(CustomApplicationPublisherServiceImpl.class) ;
+        customApplicationPublisherService.publish("我发布了一条消息。。。");
         context.close();
     }
 }
