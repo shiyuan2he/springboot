@@ -1,8 +1,6 @@
 package com.springboot.service.beanway.impl;
 
-import com.springboot.annotation.ConfigProperties;
 import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * @author heshiyuan

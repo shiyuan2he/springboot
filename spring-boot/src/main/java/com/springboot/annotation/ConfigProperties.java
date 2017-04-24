@@ -2,11 +2,10 @@ package com.springboot.annotation;
 
 import com.springboot.service.beanway.impl.BeanWayServiceImpl;
 import com.springboot.service.beanway.impl.JSR250WayServiceImpl;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import sun.misc.Contended;
+import com.springboot.service.conditional.IListService;
+import com.springboot.service.conditional.impl.LinuxIListServiceImpl;
+import com.springboot.service.conditional.impl.WindowIListServiceImpl;
+import org.springframework.context.annotation.*;
 
 /**
  * Created by heshiyuan on 2017/4/5.
@@ -17,11 +16,30 @@ import sun.misc.Contended;
 public class ConfigProperties {
 
     @Bean(initMethod = "init",destroyMethod = "destory")
-    BeanWayServiceImpl beanWayService(){
+    public BeanWayServiceImpl beanWayService(){
         return new BeanWayServiceImpl() ;
     }
     @Bean
-    JSR250WayServiceImpl jsr250WayService(){
+    public JSR250WayServiceImpl jsr250WayService(){
         return new JSR250WayServiceImpl();
+    }
+
+    /**
+     * @description <p>符合window系统就实例化WindowListServiceImpl类</p>
+     * @return
+     */
+    @Bean
+    @Conditional(WindowConditiaon.class)
+    public IListService getWindowListService(){
+        return new WindowIListServiceImpl() ;
+    }
+    /**
+     * @description <p>符合linux系统就实例化LinuxListServiceImpl类</p>
+     * @return
+     */
+    @Bean
+    @Conditional(LinuxCondition.class)
+    public IListService getLinuxListService(){
+        return new LinuxIListServiceImpl() ;
     }
 }
