@@ -1,6 +1,6 @@
 package com.springboot.service.aware.impl;
 
-import com.springboot.annotation.ConfigProperties;
+import com.springboot.config.ConfigProperties;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

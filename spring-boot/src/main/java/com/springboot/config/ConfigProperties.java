@@ -1,4 +1,4 @@
-package com.springboot.annotation;
+package com.springboot.config;
 
 import com.springboot.service.beanway.impl.BeanWayServiceImpl;
 import com.springboot.service.beanway.impl.JSR250WayServiceImpl;
@@ -10,9 +10,10 @@ import org.springframework.context.annotation.*;
 /**
  * Created by heshiyuan on 2017/4/5.
  */
-@Configuration
-@ComponentScan("com.springboot")
-@EnableAspectJAutoProxy
+//@Configuration
+//@ComponentScan("com.springboot")
+//@EnableAspectJAutoProxy
+//@SpringBootAnnotation("com.springboot")
 public class ConfigProperties {
 
     @Bean(initMethod = "init",destroyMethod = "destory")

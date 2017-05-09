@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@Service
+@Service("registerService")
 public class RegisterServiceImpl{
     public void testLogin(String username, String password) {
         System.out.println("test register");

@@ -1,6 +1,6 @@
 package com.springboot.service.scheduledexecutor.impl;
 
-import com.springboot.annotation.ScheduledExecutor;
+import com.springboot.config.ScheduledExecutor;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

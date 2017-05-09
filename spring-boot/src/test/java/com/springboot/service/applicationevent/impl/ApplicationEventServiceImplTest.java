@@ -1,6 +1,6 @@
 package com.springboot.service.applicationevent.impl;
 
-import com.springboot.annotation.ConfigProperties;
+import com.springboot.config.ConfigProperties;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

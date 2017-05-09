@@ -1,6 +1,6 @@
 package com.springboot.service.taskexecutor.impl;
 
-import com.springboot.annotation.TaskExecutor;
+import com.springboot.config.TaskExecutor;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

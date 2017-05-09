@@ -1,6 +1,6 @@
 package com.springboot.service.aop.impl;
 
-import com.springboot.aop.Action;
+import com.springboot.annotation.Action;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@Service
+@Service("loginService")
 public class LoginServiceImpl{
 
     /**

@@ -1,5 +1,6 @@
 package com.springboot.aop;
 
+import com.springboot.annotation.Action;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,7 +25,7 @@ import java.lang.reflect.Method;
 @Component
 public class LogAspectJ {
 
-    @Pointcut("@annotation(com.springboot.aop.Action)")
+    @Pointcut("@annotation(com.springboot.annotation.Action)")
     public void annotationPointCut(){}
 
     @After("annotationPointCut()")

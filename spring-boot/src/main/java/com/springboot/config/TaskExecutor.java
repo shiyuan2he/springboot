@@ -1,4 +1,4 @@
-package com.springboot.annotation;
+package com.springboot.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,9 +20,9 @@ import java.util.concurrent.Executor;
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@Configuration
-@EnableAsync //开启异步任务支持
-@ComponentScan("com.springboot.service.taskexecutor.impl")  //定义扫描异步类，异步方法的包
+//@Configuration
+//@EnableAsync //开启异步任务支持
+//@ComponentScan("com.springboot.service.taskexecutor.impl")  //定义扫描异步类，异步方法的包
 public class TaskExecutor implements AsyncConfigurer{
     @Override
     public Executor getAsyncExecutor() {

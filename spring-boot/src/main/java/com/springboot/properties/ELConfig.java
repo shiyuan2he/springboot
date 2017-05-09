@@ -23,9 +23,9 @@ import java.io.IOException;
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@Configuration
-@ComponentScan("com.springboot.properties")
-@PropertySource("classpath:test/elconfig.properties")
+//@Configuration
+//@ComponentScan("com.springboot.properties")
+//@PropertySource("classpath:test/elconfig.properties")
 public class ELConfig {
     @Value("this is normal!")
     private String normalValue ;
