@@ -27,9 +27,8 @@ public class WebInitializer implements WebApplicationInitializer{
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(SpringWebApplication.class);
         ctx.setServletContext(servletContext);
-
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher",new DispatcherServlet(ctx)) ;
-        servlet.addMapping("/");
+        servlet.addMapping("*.do");
         servlet.setLoadOnStartup(1);
     }
 }
