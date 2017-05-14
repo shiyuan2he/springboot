@@ -1,6 +1,6 @@
 package com.springboot.core;
 
-import com.springboot.config.SpringWebApplicationConfig;
+import com.springboot.config.SpringWebApplication;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -25,7 +25,7 @@ public class WebInitializer implements WebApplicationInitializer{
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(SpringWebApplicationConfig.class);
+        ctx.register(SpringWebApplication.class);
         ctx.setServletContext(servletContext);
 
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher",new DispatcherServlet(ctx)) ;

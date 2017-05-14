@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.springboot")
-public class SpringWebApplicationConfig {
+public class SpringWebApplication {
 
     @SuppressWarnings("unused")
     public InternalResourceViewResolver viewResolver(){
