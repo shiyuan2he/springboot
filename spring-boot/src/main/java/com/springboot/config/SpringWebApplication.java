@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
- * @description <p></p>
+ * @description <p>springweb 应用配置</p>
  * @path spring-boot/com.springboot.annotation
  * @author heshiyuan
  * @date 2017/4/26 下午3:00

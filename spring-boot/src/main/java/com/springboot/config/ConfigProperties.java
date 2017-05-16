@@ -16,31 +16,31 @@ import org.springframework.context.annotation.*;
 //@SpringBootAnnotation("com.springboot")
 public class ConfigProperties {
 
-    @Bean(initMethod = "init",destroyMethod = "destory")
+    /*@Bean(initMethod = "init",destroyMethod = "destory")
     public BeanWayServiceImpl beanWayService(){
         return new BeanWayServiceImpl() ;
     }
     @Bean
     public JSR250WayServiceImpl jsr250WayService(){
         return new JSR250WayServiceImpl();
-    }
+    }*/
 
     /**
      * @description <p>符合window系统就实例化WindowListServiceImpl类</p>
      * @return
      */
-    @Bean
+    /*@Bean
     @Conditional(WindowConditiaon.class)
     public IListService getWindowListService(){
         return new WindowIListServiceImpl() ;
-    }
+    }*/
     /**
      * @description <p>符合linux系统就实例化LinuxListServiceImpl类</p>
      * @return
      */
-    @Bean
+   /* @Bean
     @Conditional(LinuxCondition.class)
     public IListService getLinuxListService(){
         return new LinuxIListServiceImpl() ;
-    }
+    }*/
 }

@@ -20,6 +20,6 @@ public class IndexController {
 
     @RequestMapping("/hello")
     public String hello(){
-        return "index" ;
+        return "hello" ;
     }
 }

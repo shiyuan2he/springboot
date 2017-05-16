@@ -28,7 +28,7 @@ public class WebInitializer implements WebApplicationInitializer{
         ctx.register(SpringWebApplication.class);
         ctx.setServletContext(servletContext);
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher",new DispatcherServlet(ctx)) ;
-        servlet.addMapping("*.do");
+        servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
     }
 }
