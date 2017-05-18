@@ -1,5 +1,6 @@
 package com.springboot.controller;
 
+import com.springboot.annotation.Action;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
     @RequestMapping("/hello")
+    @Action(name="进入首页")
     public String hello(){
         return "hello" ;
     }
