@@ -64,7 +64,7 @@ public class LogAspectJ {
         System.out.println(Thread.currentThread().getId()+"：日志("+action.name()+"),接口耗时"+(end - start)+"ms") ;
     }
     /**
-     * @description <p>法官法命名式拦截</p>
+     * @description <p>方法命名式拦截</p>
      * @param
      * @return No such property: code for class: Script1
      * @author heshiyuan
