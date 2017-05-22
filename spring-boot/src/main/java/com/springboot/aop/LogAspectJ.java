@@ -26,13 +26,12 @@ import java.lang.reflect.Method;
 @Component
 public class LogAspectJ {
 
-    long start = 0,end = 0; ;
+    long start = 0,end = 0;
     @Pointcut("@annotation(com.springboot.annotation.Action)")
     public void annotationPointCut(){}
     /**
      * @description <p>调用接口方法前调用</p>
-     * @param
-     * @return No such property: code for class: Script1
+     * @param   joinPoint
      * @author heshiyuan
      * @date 2017/5/18 下午1:21
      * @email shiyuan4work@sina.com
@@ -41,8 +40,9 @@ public class LogAspectJ {
      */
     @Before("annotationPointCut()")
     public void beforeInvokeInterface(JoinPoint joinPoint){
-        Signature signature = joinPoint.getSignature();
-        System.out.println(Thread.currentThread().getId()+":调用"+signature.getName()+"接口开始...") ;
+        MethodSignature signation = (MethodSignature) joinPoint.getSignature() ;
+        Method method = signation.getMethod() ;
+        System.out.println(Thread.currentThread().getId()+":调用"+method.getName()+"接口开始...") ;
         start = System.currentTimeMillis() ;
     }
     /**
@@ -66,19 +66,18 @@ public class LogAspectJ {
     /**
      * @description <p>方法命名式拦截</p>
      * @param
-     * @return No such property: code for class: Script1
      * @author heshiyuan
      * @date 2017/5/18 下午12:22
      * @email shiyuan4work@sina.com
      * @github https://github.com/shiyuan2he.git
      * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
      */
-    /*@Before("execution(* com.springboot.service.aop.impl.RegisterServiceImpl.*(..))")
+    @Before("execution(* com.springboot.controller.*(..))")
     public void before(JoinPoint joinPoint){
         MethodSignature signation = (MethodSignature) joinPoint.getSignature() ;
         Method method = signation.getMethod() ;
         System.out.println("方法规则式拦截 " + method.getName()) ;
-    }*/
+    }
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);

@@ -1,9 +1,7 @@
 package com.springboot.config;
 
+import com.springboot.annotation.SpringBootAnnotation;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -18,9 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@Configuration
-@EnableWebMvc
-@ComponentScan("com.springboot")
+@SpringBootAnnotation
 public class SpringWebApplication {
 
     @SuppressWarnings("unused")

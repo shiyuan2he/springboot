@@ -2,6 +2,8 @@ package com.springboot.annotation;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.lang.annotation.*;
 
@@ -20,7 +22,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Configuration  //元注解
-@ComponentScan  //元注解
+@ComponentScan("com.springboot")
+@EnableAspectJAutoProxy
+@EnableWebMvc
 public @interface SpringBootAnnotation {
     String[] value() default {} ;
 }
