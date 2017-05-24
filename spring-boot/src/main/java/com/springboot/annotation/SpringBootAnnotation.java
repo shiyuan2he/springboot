@@ -22,9 +22,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Configuration  //元注解
-@ComponentScan("com.springboot")
-@EnableAspectJAutoProxy
 @EnableWebMvc
+@EnableAspectJAutoProxy()
+@ComponentScan("com.springboot")
 public @interface SpringBootAnnotation {
     String[] value() default {} ;
 }
