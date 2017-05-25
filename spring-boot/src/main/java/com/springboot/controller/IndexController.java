@@ -28,8 +28,8 @@ public class IndexController {
      * @github https://github.com/shiyuan2he.git
      * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
      */
-    @RequestMapping("/hello")
     @Action(name="进入首页")
+    @RequestMapping("/hello")
     public String hello(){
         return "hello" ;
     }

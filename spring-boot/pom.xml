@@ -30,6 +30,8 @@
         <junit.version>4.12</junit.version>
         <!--工具包-->
         <commons-io.version>2.5</commons-io.version>
+
+        <jsr250.version></jsr250.version>
     </properties>
     <dependencies>
         <!--spring mvc-->
@@ -135,6 +137,11 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.annotation</groupId>-->
+            <!--<artifactId>jsr250-api</artifactId>-->
+            <!--<version>${jsr250.version}</version>-->
+        <!--</dependency>-->
     </dependencies>
     <build>
 
