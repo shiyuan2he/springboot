@@ -10,9 +10,12 @@ package com.springboot.service.annotation.impl;/**
  * @price ¥5    微信：hewei1109
  */
 
-import com.springboot.config.ConfigProperties;
+import com.springboot.config.SpringWebApplication;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @description <p></p>
@@ -29,9 +32,15 @@ public class AnnotationServiceImplTest {
     @Test
     public void testAnnotation(){
         AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(ConfigProperties.class) ;
+                new AnnotationConfigApplicationContext(SpringWebApplication.class) ;
         AnnotationServiceImpl annotationServiceImpl = context.getBean(AnnotationServiceImpl.class) ;
         annotationServiceImpl.outputStream();
         context.close();
+    }
+    @Test
+    public void testSSS(){
+        List<Integer> list = Arrays.asList(1,2,3,4) ;
+        int sum = list.stream().map(x->x * x).reduce((x,y)->x+y).get();
+        System.out.println(sum) ;
     }
 }

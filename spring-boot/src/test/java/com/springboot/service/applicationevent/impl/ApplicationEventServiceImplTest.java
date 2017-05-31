@@ -1,6 +1,6 @@
 package com.springboot.service.applicationevent.impl;
 
-import com.springboot.config.ConfigProperties;
+import com.springboot.config.SpringWebApplication;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -20,7 +20,7 @@ public class ApplicationEventServiceImplTest {
     @Test
     public void testApplicationEvnet(){
          AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(ConfigProperties.class) ;
+                new AnnotationConfigApplicationContext(SpringWebApplication.class) ;
         CustomApplicationPublisherServiceImpl customApplicationPublisherService = context.getBean(CustomApplicationPublisherServiceImpl.class) ;
         customApplicationPublisherService.publish("我发布了一条消息。。。");
         context.close();

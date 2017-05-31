@@ -1,5 +1,8 @@
 package com.springboot.service.taskexecutor.impl;
 
+import com.springboot.service.webinit.impl.WebInitializerServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +19,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TaskExecutorServiceImpl {
+    private static Logger logger = LoggerFactory.getLogger(TaskExecutorServiceImpl.class);
     @Async
     public void executeAsyncTask(Integer i){
-        System.out.println("异步任务："+i);
+        logger.info("异步任务："+i);
     }
     @Async
     public void executeAsyncTaskPlusOne(Integer i){
-        System.out.println("加强异步任务："+(i+1));
+        logger.info("加强异步任务："+(i+1));
     }
 }

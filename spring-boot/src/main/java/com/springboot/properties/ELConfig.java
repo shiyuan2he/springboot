@@ -25,7 +25,7 @@ import java.io.IOException;
  */
 //@Configuration
 //@ComponentScan("com.springboot.properties")
-//@PropertySource("classpath:test/elconfig.properties")
+//@PropertySource("classpath:config/elconfig.properties")
 public class ELConfig {
     @Value("this is normal!")
     private String normalValue ;
@@ -36,7 +36,7 @@ public class ELConfig {
     @Value("#{T(java.lang.Math).random() * 1000.0}")
     private double randomNumber ;
 
-    @Value("classpath:test/elconfig.properties")
+    @Value("classpath:config/elconfig.properties")
     private Resource elConfig ;
 
     @Value("www.baidu.com")

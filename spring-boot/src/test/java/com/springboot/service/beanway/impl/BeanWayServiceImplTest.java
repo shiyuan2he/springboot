@@ -1,6 +1,8 @@
 package com.springboot.service.beanway.impl;
 
+import com.springboot.config.SpringWebApplication;
 import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * @author heshiyuan
@@ -16,10 +18,7 @@ import org.junit.Test;
 public class BeanWayServiceImplTest {
     @Test
     public void testCreateBeanWay(){
-        //AnnotationConfigApplicationContext context =
-          //      new AnnotationConfigApplicationContext(ConfigProperties.class) ;
-        //BeanWayServiceImpl beanWayService = context.getBean(BeanWayServiceImpl.class) ;
-        //JSR250WayServiceImpl jsr250WayService = context.getBean(JSR250WayServiceImpl.class) ;
-        //context.close();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringWebApplication.class) ;
+        context.close();
     }
 }

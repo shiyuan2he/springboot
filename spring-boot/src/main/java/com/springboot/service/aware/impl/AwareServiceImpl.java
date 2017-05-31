@@ -37,7 +37,7 @@ public class AwareServiceImpl implements BeanNameAware,ResourceLoaderAware{
 
     public void outputResult(){
         System.out.println("beanName:"+beanName);
-        Resource resource = loader.getResource("classpath:test/elconfig.properties") ;
+        Resource resource = loader.getResource("classpath:config/elconfig.properties") ;
         try {
             System.out.println("ResourceLoader加载的资源文件："+ IOUtils.toString(resource.getInputStream()));
         } catch (IOException e) {

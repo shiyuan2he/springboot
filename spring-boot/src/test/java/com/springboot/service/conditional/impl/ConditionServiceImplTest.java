@@ -1,6 +1,6 @@
 package com.springboot.service.conditional.impl;
 
-import com.springboot.config.ConfigProperties;
+import com.springboot.config.SpringWebApplication;
 import com.springboot.service.conditional.IListService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,7 +20,7 @@ public class ConditionServiceImplTest {
     @Test
     public void testContional(){
         AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(ConfigProperties.class) ;
+                new AnnotationConfigApplicationContext(SpringWebApplication.class) ;
         IListService IListService = context.getBean(IListService.class) ;
         System.out.println(IListService.showCmd());
         context.close();

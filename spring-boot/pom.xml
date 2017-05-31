@@ -30,8 +30,6 @@
         <junit.version>4.12</junit.version>
         <!--工具包-->
         <commons-io.version>2.5</commons-io.version>
-
-        <jsr250.version></jsr250.version>
     </properties>
     <dependencies>
         <!--spring mvc-->
@@ -135,7 +133,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
-            <scope>test</scope>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>javax.annotation</groupId>-->

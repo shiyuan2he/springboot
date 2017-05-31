@@ -1,6 +1,6 @@
 package com.springboot.service.aware.impl;
 
-import com.springboot.config.ConfigProperties;
+import com.springboot.config.SpringWebApplication;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -20,7 +20,7 @@ public class AwareServiceImplTest {
     @Test
     public void testAwareService(){
          AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(ConfigProperties.class) ;
+                new AnnotationConfigApplicationContext(SpringWebApplication.class) ;
         AwareServiceImpl awareService = context.getBean(AwareServiceImpl.class) ;
         awareService.outputResult();
         context.close();

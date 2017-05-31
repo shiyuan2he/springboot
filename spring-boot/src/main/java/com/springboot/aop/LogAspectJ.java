@@ -1,6 +1,7 @@
 package com.springboot.aop;
 
 import com.springboot.annotation.Action;
+import com.springboot.service.taskexecutor.impl.TaskExecutorServiceImpl;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
@@ -8,9 +9,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * @author heshiyuan
@@ -22,10 +26,10 @@ import java.lang.reflect.Method;
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@Aspect
+@Aspect //申明是一个切面
 @Component
 public class LogAspectJ {
-
+    private static Logger logger = LoggerFactory.getLogger(TaskExecutorServiceImpl.class);
     long start = 0,end = 0;
     @Pointcut("@annotation(com.springboot.annotation.Action)")
     public void annotationPointCut(){}
@@ -42,7 +46,8 @@ public class LogAspectJ {
     public void beforeInvokeInterface(JoinPoint joinPoint){
         MethodSignature signation = (MethodSignature) joinPoint.getSignature() ;
         Method method = signation.getMethod() ;
-        System.out.println(Thread.currentThread().getId()+":调用"+method.getName()+"接口开始...") ;
+        Object[] args = joinPoint.getArgs();
+        logger.info(Thread.currentThread().getId()+":调用"+method.getName()+"接口开始...参数："+ Arrays.asList(args)) ;
         start = System.currentTimeMillis() ;
     }
     /**
@@ -59,9 +64,9 @@ public class LogAspectJ {
         MethodSignature signation = (MethodSignature) joinPoint.getSignature() ;
         Method method = signation.getMethod() ;
         Action action = method.getAnnotation(Action.class);
-        System.out.println(Thread.currentThread().getId()+":调用"+method.getName()+"接口结束...") ;
+        logger.info(Thread.currentThread().getId()+":调用"+method.getName()+"接口结束...") ;
         end = System.currentTimeMillis() ;
-        System.out.println(Thread.currentThread().getId()+"：日志("+action.name()+"),接口耗时"+(end - start)+"ms") ;
+        logger.info(Thread.currentThread().getId()+"：日志("+action.name()+"),接口耗时"+(end - start)+"ms") ;
     }
     /**
      * @description <p>方法命名式拦截</p>
@@ -76,7 +81,7 @@ public class LogAspectJ {
     public void before(JoinPoint joinPoint){
         MethodSignature signation = (MethodSignature) joinPoint.getSignature() ;
         Method method = signation.getMethod() ;
-        System.out.println("方法规则式拦截 " + method.getName()) ;
+        logger.info("方法规则式拦截 " + method.getName()) ;
     }
     @Override
     public boolean equals(Object obj) {

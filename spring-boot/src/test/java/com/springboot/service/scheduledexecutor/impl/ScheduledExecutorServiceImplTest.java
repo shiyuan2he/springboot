@@ -1,6 +1,6 @@
 package com.springboot.service.scheduledexecutor.impl;
 
-import com.springboot.config.ScheduledExecutor;
+import com.springboot.config.SpringWebApplication;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -19,6 +19,6 @@ public class ScheduledExecutorServiceImplTest {
 
     @Test
     public void testScheduledExecutor(){
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ScheduledExecutor.class) ;
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringWebApplication.class) ;
     }
 }
