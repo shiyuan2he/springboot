@@ -1,6 +1,7 @@
 package com.springboot.config;
 
 import com.springboot.annotation.SpringBootAnnotation;
+import com.springboot.core.TimeInterceptor;
 import com.springboot.service.conditional.IListService;
 import com.springboot.service.conditional.impl.LinuxIListServiceImpl;
 import com.springboot.service.conditional.impl.WindowIListServiceImpl;
@@ -13,6 +14,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -30,7 +34,7 @@ import java.util.concurrent.Executor;
  * @price ¥5    微信：hewei1109
  */
 @SpringBootAnnotation
-public class SpringWebApplication implements AsyncConfigurer {
+public class SpringWebApplication extends WebMvcConfigurerAdapter implements AsyncConfigurer {
 
     /**
      * @description <p>springMVC视图前后缀匹配文件</p>
@@ -49,6 +53,11 @@ public class SpringWebApplication implements AsyncConfigurer {
         viewResolver.setSuffix(".jsp");
         viewResolver.setViewClass(JstlView.class);
         return viewResolver ;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/") ;
     }
 
     @Bean
@@ -81,6 +90,15 @@ public class SpringWebApplication implements AsyncConfigurer {
     @Bean
     public TaskExecutorServiceImpl getTaskExecutorService(){
         return new TaskExecutorServiceImpl() ;
+    }
+
+    @Bean
+    public TimeInterceptor getTimeInterceptor(){
+        return new TimeInterceptor();
+    }
+
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(getTimeInterceptor()) ;
     }
     /**
      * @description <p></p>
