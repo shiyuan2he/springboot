@@ -1,12 +1,12 @@
 package com.springboot.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.logging.Logger;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class TimeInterceptor extends HandlerInterceptorAdapter {
 
-    private Logger logger = Logger.getLogger(TimeInterceptor.class.getName()) ;
+    private Logger logger = LoggerFactory.getLogger(TimeInterceptor.class.getName()) ;
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler){
         request.setAttribute("startTime",System.currentTimeMillis());
         return true;

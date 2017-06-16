@@ -1,10 +1,12 @@
 package com.springboot.controller;
 
-import com.springboot.annotation.Action;
+import com.springboot.annotation.ActionLog;
 import com.springboot.javabean.User;
-import oracle.jvm.hotspot.jfr.Producer;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,14 +36,15 @@ public class IndexController {
      * @github https://github.com/shiyuan2he.git
      * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
      */
-    @Action(name="进入首页")
-    @RequestMapping("/hello")
-    public String hello(){
-        return "hello" ;
-    }
-
+    //@ActionLog(description="进入首页")
+    //@RequestMapping("/hello")
+    //public String hello(){
+      //  return "hello" ;
+   // }
     /**
-     * @description <p>将返回字符串封装在response中</p>
+     * @description <p>将返回字符串封装在response中
+     *              http://localhost:9527/springboot/index
+     *              </p>
      * @param request
      * @return No such property: code for class: Script1
      * @author heshiyuan

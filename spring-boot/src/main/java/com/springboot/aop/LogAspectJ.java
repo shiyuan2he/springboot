@@ -1,9 +1,8 @@
 package com.springboot.aop;
 
-import com.springboot.annotation.Action;
+import com.springboot.annotation.ActionLog;
 import com.springboot.service.taskexecutor.impl.TaskExecutorServiceImpl;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -31,7 +30,7 @@ import java.util.Arrays;
 public class LogAspectJ {
     private static Logger logger = LoggerFactory.getLogger(TaskExecutorServiceImpl.class);
     long start = 0,end = 0;
-    @Pointcut("@annotation(com.springboot.annotation.Action)")
+    @Pointcut("@annotation(com.springboot.annotation.ActionLog)")
     public void annotationPointCut(){}
     /**
      * @description <p>调用接口方法前调用</p>
@@ -63,10 +62,10 @@ public class LogAspectJ {
     public void afterInvokeInterface(JoinPoint joinPoint){
         MethodSignature signation = (MethodSignature) joinPoint.getSignature() ;
         Method method = signation.getMethod() ;
-        Action action = method.getAnnotation(Action.class);
+        ActionLog action = method.getAnnotation(ActionLog.class);
         logger.info(Thread.currentThread().getId()+":调用"+method.getName()+"接口结束...") ;
         end = System.currentTimeMillis() ;
-        logger.info(Thread.currentThread().getId()+"：日志("+action.name()+"),接口耗时"+(end - start)+"ms") ;
+        logger.info(Thread.currentThread().getId()+"：日志("+action.description()+"),接口耗时"+(end - start)+"ms") ;
     }
     /**
      * @description <p>方法命名式拦截</p>

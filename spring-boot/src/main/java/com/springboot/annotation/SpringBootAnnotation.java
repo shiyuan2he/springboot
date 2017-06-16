@@ -25,7 +25,7 @@ import java.lang.annotation.*;
 @Documented
 @Configuration  //元注解
 @EnableWebMvc
-@EnableAspectJAutoProxy() //aop自动代理
+//@EnableAspectJAutoProxy() //aop自动代理
 @EnableScheduling//开启对计划任务的支持
 @EnableAsync //开启异步多线程方法调用
 @ComponentScan("com.springboot")

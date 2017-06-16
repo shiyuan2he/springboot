@@ -1,6 +1,5 @@
 package com.springboot.properties;
 
-import com.springboot.service.aop.impl.LoginServiceImpl;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

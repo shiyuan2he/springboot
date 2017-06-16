@@ -20,10 +20,17 @@ import java.lang.annotation.Retention;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Action {
-    /**
-     * @retui
-     * @author heshiyuann
-     */
-    String name() ;
+public @interface ActionLog {
+    boolean isRecordArgs() default true;
+
+    boolean isRecordReturn() default true;
+
+    String description();
+
+    ActionLog.RecordStrategy recordStrategy() default ActionLog.RecordStrategy.ALL;
+    public static enum RecordStrategy {
+        ALL,
+        EXCEPTION;
+        private RecordStrategy() {}
+    }
 }

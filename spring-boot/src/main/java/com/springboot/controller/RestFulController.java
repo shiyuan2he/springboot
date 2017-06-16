@@ -2,6 +2,7 @@ package com.springboot.controller;
 
 import com.springboot.javabean.User;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestFulController {
 
     //直接返回对象，对象会自动转化成json
-    @RequestMapping(value="/getJson",produces={"application/json;charset=UTF-8"})
+    @RequestMapping(value="/getjson",produces={"application/json;charset=UTF-8"})
     public User getJson(User user){
         return new User(user.getId(),user.getName(),user.getCardNo()) ;
     }
     //直接返回对象，对象会自动转化成xml
-    @RequestMapping(value="/getXml",produces={"application/xml;charset=UTF-8"})
+    @RequestMapping(value="/getxml",produces={"application/xml;charset=UTF-8"})
     public User getXml(User user){
         return new User(user.getId(),user.getName(),user.getCardNo()) ;
     }

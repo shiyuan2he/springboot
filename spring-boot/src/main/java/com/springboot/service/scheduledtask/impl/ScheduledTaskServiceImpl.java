@@ -25,7 +25,7 @@ public class ScheduledTaskServiceImpl {
     private static SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss") ;
     private static Logger logger = LoggerFactory.getLogger(ScheduledTaskServiceImpl.class);
 
-    @Scheduled(fixedRate = 5000) //每隔5秒执行一次
+    @Scheduled(fixedRate = 60000) //每隔10秒执行一次
     public void reportCurrentTime(){
         logger.info("每隔5秒执行一次:"+ format.format(Calendar.getInstance().getTime())) ;
     }

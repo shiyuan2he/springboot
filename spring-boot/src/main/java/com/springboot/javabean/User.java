@@ -15,6 +15,7 @@ public class User {
     private String name ;
     private String cardNo ;
 
+    public User(){}
     public User(String id, String name, String cardNo) {
         this.id = id;
         this.name = name;
