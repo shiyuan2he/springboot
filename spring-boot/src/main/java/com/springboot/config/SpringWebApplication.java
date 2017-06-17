@@ -14,10 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -32,7 +29,7 @@ import java.util.concurrent.Executor;
  * @author shiyuan2he
  * @email shiyuan4work@sina.com
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
- * @price ¥5    微信：hewei1109
+ * @price ?5    微信：hewei1109
  */
 @SpringBootAnnotation
 public class SpringWebApplication extends WebMvcConfigurerAdapter implements AsyncConfigurer {
@@ -54,10 +51,6 @@ public class SpringWebApplication extends WebMvcConfigurerAdapter implements Asy
         viewResolver.setSuffix(".jsp");
         viewResolver.setViewClass(JstlView.class);
         return viewResolver ;
-    }
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/index").setViewName("/hello");
     }
 
     @Override
@@ -128,5 +121,13 @@ public class SpringWebApplication extends WebMvcConfigurerAdapter implements Asy
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
+    }
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry){
+        registry.addViewController("/").setViewName("/hello.view");
+    }
+    @Override
+    public void configurePathMath(PathMatchConfigurer configurer){
+        configurer.setUseSuffixPatternMatch(false) ;
     }
 }

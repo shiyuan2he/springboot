@@ -7,7 +7,6 @@
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-            <charset>UTF-8</charset>
         </encoder>
     </appender>
     <!--将web包下的日志设置为debug，方便查看请求的详细信息-->
