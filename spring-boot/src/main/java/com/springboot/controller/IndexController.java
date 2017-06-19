@@ -37,10 +37,18 @@ public class IndexController {
      * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
      */
     //@ActionLog(description="进入首页")
-    //@RequestMapping("/hello")
-    //public String hello(){
-      //  return "hello" ;
-   // }
+    @RequestMapping("/hello")
+    public String hello(){
+        return "hello" ;
+    }
+    @RequestMapping("/upload")
+    public String upload(){
+        return "upload" ;
+    }
+    @RequestMapping("/push")
+    public String push(){
+        return "push/push" ;
+    }
     /**
      * @description <p>将返回字符串封装在response中
      *              http://localhost:9527/springboot/index

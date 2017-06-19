@@ -1,7 +1,7 @@
-// push() ;
-// function push(){
-//     $.get('defer',function(data){
-//         console.log(data) ;
-//             push() ;
-//     }
-// }) ;
+push() ;
+function push(){
+    $.get('../push/getData',function(data) {
+        console.log(data);
+        push();
+    });
+}

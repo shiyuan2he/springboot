@@ -124,11 +124,11 @@ public class SpringWebApplication extends WebMvcConfigurerAdapter implements Asy
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
     }
-    @Override
+
     public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/").setViewName("/hello");
-        registry.addViewController("/").setViewName("/upload");
-        registry.addViewController("/push").setViewName("/push");
+        //registry.addViewController("/").setViewName("/hello");
+       // registry.addViewController("/").setViewName("/upload");
+        //registry.addViewController("/").setViewName("/push");
     }
     public void configurePathMath(PathMatchConfigurer configurer){
         configurer.setUseSuffixPatternMatch(false) ;
