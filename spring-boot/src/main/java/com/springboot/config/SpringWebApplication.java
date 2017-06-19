@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -124,10 +126,17 @@ public class SpringWebApplication extends WebMvcConfigurerAdapter implements Asy
     }
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/").setViewName("/hello.view");
+        registry.addViewController("/").setViewName("/hello");
+        registry.addViewController("/").setViewName("/upload");
+        registry.addViewController("/push").setViewName("/push");
     }
-    @Override
     public void configurePathMath(PathMatchConfigurer configurer){
         configurer.setUseSuffixPatternMatch(false) ;
+    }
+    @Bean
+    public MultipartResolver multipartResolver(){
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxUploadSize(1024 * 20);
+        return commonsMultipartResolver ;
     }
 }
