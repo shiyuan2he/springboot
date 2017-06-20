@@ -46,11 +46,11 @@ public class ControllerInterfaceTest {
     @Test
     public void testSkipToView(){
         try {
-            mockMvc.perform(get("/hello")) //向／hello发送get请求
+            mockMvc.perform(get("/push/getData")) //向／hello发送get请求
                     .andExpect(status().isOk()) //预期控制返回状态为200
-                    .andExpect(view().name("view")) // 预期视图名称 view
-                    .andExpect(forwardedUrl("/WEB-INF/classes/views/hello.jsp")) // 预期跳转到hello.jsp页面
-            //.andExpect(model().attribute("msg",""))
+                    //.andExpect(view().name("view")) // 预期视图名称 view
+                    //.andExpect(forwardedUrl("/WEB-INF/classes/views/hello.jsp")) // 预期跳转到hello.jsp页面
+                    //.andExpect(model().attribute("msg",""))
             ;
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class ControllerInterfaceTest {
     @Test
     public void testGetData(){
         try {
-            mockMvc.perform(get("/rest/getjson"))
+            mockMvc.perform(get("/push/getData"))
                     .andExpect(status().isOk())
                     .andExpect(content().contentType("application/json;charset=UTF-8")) // 预期返回值的媒体类型是application/json;charset=UTF-8
             ;
