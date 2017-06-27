@@ -1,5 +1,6 @@
 package com.springboot.config;
 
+import com.springboot.SpringbootApplication;
 import com.springboot.annotation.SpringBootAnnotation;
 import com.springboot.core.TimeInterceptor;
 import com.springboot.service.conditional.IListService;
@@ -10,6 +11,7 @@ import com.springboot.service.webinit.impl.WebInitializerServiceImpl;
 import com.springboot.util.LinuxCondition;
 import com.springboot.util.WindowConditiaon;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -36,6 +38,9 @@ import java.util.concurrent.Executor;
 //@SpringBootAnnotation
 public class SpringWebApplication extends WebMvcConfigurerAdapter implements AsyncConfigurer {
 
+    public static void main(String[] args){
+        SpringApplication.run(SpringbootApplication.class,args) ;
+    }
     /**
      * @description <p>springMVC视图前后缀匹配文件</p>
      * @param

@@ -1,5 +1,6 @@
 package com.springboot.annotation;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -28,6 +29,7 @@ import java.lang.annotation.*;
 //@EnableAspectJAutoProxy() //aop自动代理
 @EnableScheduling//开启对计划任务的支持
 @EnableAsync //开启异步多线程方法调用
+@EnableAutoConfiguration
 @ComponentScan("com.springboot")
 public @interface SpringBootAnnotation {
     String[] value() default {} ;
