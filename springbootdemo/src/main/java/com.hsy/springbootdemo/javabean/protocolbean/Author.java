@@ -1,5 +1,4 @@
-package com.springboot.javabean;
-
+package com.hsy.springbootdemo.javabean.protocolbean ;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +16,11 @@ import java.sql.Time;
  */
 @Component
 @ConfigurationProperties(prefix = "author")
-//,locations={"classpath:config/author.properties"}
 public class Author {
 
-    private Time time ;
     private String name ;
-    private String age ;
+    private String sex ;
+    private Time times;
 
     public String getName() {
         return name;
@@ -32,19 +30,18 @@ public class Author {
         this.name = name;
     }
 
-    public String getAge() {
-        return age;
+    public String getSex() {
+        return sex;
+    }
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public Time getTimes() {
+        return times;
     }
 
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
+    public void setTimes(Time times) {
+        this.times = times;
     }
 }

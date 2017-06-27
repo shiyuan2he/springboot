@@ -20,18 +20,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@RestController
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@ImportResource({"classpath:backup-context.xml"})
+//@RestController
+//@SpringBootApplication//(exclude = {DataSourceAutoConfiguration.class})
+//@ImportResource({"classpath:backup-context.xml"})
 public class SpringbootApplication {
 
-    @Autowired
-    Author author ;
-    @RequestMapping("/")
-    String index(){
-        return "welcome to spring boot,my name is "+author.getName() ;
-    }
-    public static void main(String[] args){
-        SpringApplication.run(SpringbootApplication.class,args) ;
-    }
+//    @Autowired
+//    Author author ;
+//    @RequestMapping("/")
+//    String index(){
+//        return "welcome to spring boot,my name is "+author.getName() ;
+//    }
+
 }

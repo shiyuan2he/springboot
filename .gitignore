@@ -1,7 +1,5 @@
-.DS_Store
-*/.DS_Store
-*/*/.DS_Store
-
-spring-boot/target/*
-spring-boot/.idea/*
-spring-boot/spring-boot.iml
+.idea
+.idea/*
+*/.idea
+*/*.iml
+*/target
