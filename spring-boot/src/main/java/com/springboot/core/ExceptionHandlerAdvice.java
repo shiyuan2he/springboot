@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(value = Exception.class)

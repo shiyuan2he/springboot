@@ -26,6 +26,9 @@ import javax.servlet.http.HttpServletRequest;
 //也支持reqeust，response的媒体类型进行配置
 @RequestMapping("/index")
 public class IndexController {
+    public static void main(){
+
+    }
     /**
      * @description <p>跳转到欢迎页</p>
      * @param 

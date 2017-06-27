@@ -1,6 +1,8 @@
 package com.springboot.controller;
 
+import com.springboot.javabean.Author;
 import com.springboot.javabean.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +31,11 @@ public class RestFulController {
     @RequestMapping(value="/getxml",produces={"application/xml;charset=UTF-8"})
     public User getXml(User user){
         return new User(user.getId(),user.getName(),user.getCardNo()) ;
+    }
+    @Autowired
+    Author author ;
+    @RequestMapping("/")
+    String index(){
+        return "welcome to spring boot,my name is "+author.getName() ;
     }
 }

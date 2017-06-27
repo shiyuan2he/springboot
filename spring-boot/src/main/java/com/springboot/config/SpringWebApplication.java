@@ -33,7 +33,7 @@ import java.util.concurrent.Executor;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ?5    微信：hewei1109
  */
-@SpringBootAnnotation
+//@SpringBootAnnotation
 public class SpringWebApplication extends WebMvcConfigurerAdapter implements AsyncConfigurer {
 
     /**
