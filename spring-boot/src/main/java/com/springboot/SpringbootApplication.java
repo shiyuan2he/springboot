@@ -1,7 +1,10 @@
 package com.springboot;
 
+import com.springboot.javabean.Author;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author heshiyuan
@@ -13,7 +16,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-<<<<<<< HEAD
 @SpringBootApplication
 //@ImportResource({"classpath:backup-context.xml"})
 public class SpringbootApplication {
@@ -21,18 +23,12 @@ public class SpringbootApplication {
     public static void main(String[] args){
         SpringApplication.run(SpringbootApplication.class,args) ;
     }
-=======
-//@RestController
-//@SpringBootApplication//(exclude = {DataSourceAutoConfiguration.class})
-//@ImportResource({"classpath:backup-context.xml"})
-public class SpringbootApplication {
 
-//    @Autowired
-//    Author author ;
-//    @RequestMapping("/")
-//    String index(){
-//        return "welcome to spring boot,my name is "+author.getName() ;
-//    }
+    @Autowired
+    Author author ;
+    @RequestMapping("/")
+    String index(){
+        return "welcome to spring boot,my name is "+author.getName() ;
+    }
 
->>>>>>> fae0ed2959e832df72247d49f0f96fb5b6794be0
 }
