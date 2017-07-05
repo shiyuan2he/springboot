@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link th:href="@{bootstrap/css/bootstrap.css}" ref="stylesheet"/>
+    <link th:href="@{bootstrap/css/bootstrap-theme.css}" ref="stylesheet"/>
+</head>
+<body>
+    <span th:text="${person.name}"></span>
+    <div th:if="${not #lists.isEmpty(list)}">
+        <ul>
+            <li th:each="person:${list}">
+                <span th:text="${person.age}"></span>
+                <span th:text="${person.name}"></span>
+            </li>
+        </ul>
+    </div>
+    <script th:inline="javascript">
+        var person = [[${person}]] ;
+        console.log(person.name,person.age);
+
+    </script>
+</body>
+
+</html>

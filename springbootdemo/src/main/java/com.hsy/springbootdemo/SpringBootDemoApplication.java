@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author heshiyuan
- * @author shiyuan2he
  * @description <p></p>
  * @path spring/PACKAGE_NAME
  * @date 2017/6/27 15:22
