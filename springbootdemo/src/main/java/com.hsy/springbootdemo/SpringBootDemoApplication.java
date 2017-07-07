@@ -1,6 +1,10 @@
 package com.hsy.springbootdemo;
 
 import com.hsy.springbootdemo.javabean.protocolbean.Author;
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,15 +39,28 @@ public class SpringBootDemoApplication {
         SpringApplication.run(SpringBootDemoApplication.class,args);
     }
 
-    @Bean
+    /*@Bean
     public EmbeddedServletContainerFactory servletContainer(){
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory(){
-
-            protected void postProcessContext(){
-
+            protected void postProcessContext(Context context){
+                SecurityConstraint securityConstraint = new SecurityConstraint();
+                securityConstraint.setUserConstraint("CONFIDENTIAL");
+                SecurityCollection securityCollection = new SecurityCollection();
+                securityCollection.addPattern("*//*");
+                securityConstraint.addCollection(securityCollection);
+                context.addConstraint(securityConstraint);
             }
         } ;
-
-        return  null ;
+        tomcat.addAdditionalTomcatConnectors(httpConnector());
+        return tomcat ;
     }
+    @Bean
+    public Connector httpConnector(){
+        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol") ;
+        connector.setScheme("http") ;
+        connector.setPort(10000) ;
+        connector.setSecure(false);
+        connector.setRedirectPort(8443);
+        return connector ;
+    }*/
 }
