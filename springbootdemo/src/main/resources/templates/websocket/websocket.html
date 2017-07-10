@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>广播式websocket</title>
+</head>
+<body>
+    <div>
+        <div>
+            <button id="connect" onclick="connect();"></button>
+            <button id="disconnect" onclick="disconnect();" disabled="disabled"></button>
+        </div>
+        <div id="conversationDiv">
+            <label>输入您的名字</label><input type="text" id="name"/>
+            <button id="sendName" onclick="sendName();"></button>
+            <p id="responseMsg"></p>
+        </div>
+    </div>
+    <script th:src="@{sockjs.min.js}"></script>
+    <script th:src="@{stomp.min.js}"></script>
+    <script th:src="@{jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript">
+        var stompClient = null ;
+        function connect(){
+            var socket = new SockJS("/endpointSpringboot");
+            stompClient = socket.connect({},function(frame){
+                setContent(true) ;
+                stompClient.subscribe('/topic/getResponse',function(responseMsg){
+                    console.log(responseMsg);
+                    $("#responseMsg").val(responseMsg);
+                });
+            });
+
+        }
+        function disconnect(){
+            if(stompClient != null){
+                stompClient.disconnect() ;
+            }
+            setContent(false) ;
+        }
+        function sendName(){
+            setContent.send("/welcome",{},JSON.stringify({'name':$("#sendName").val()}))
+        }
+        function setContent(connect){
+            document.getElementById("connect").disabled = connect ;
+            document.getElementById("disconnect").disabled = !connect ;
+            document.getElementById("conversationDiv").style.visibility = connect ? 'visible' : 'hidden';
+        }
+    </script>
+</body>
+</html>
