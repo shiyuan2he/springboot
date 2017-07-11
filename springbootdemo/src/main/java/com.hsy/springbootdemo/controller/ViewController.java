@@ -35,4 +35,8 @@ public class ViewController {
         model.addAttribute("list",list) ;
         return "index" ;
     }
+    @RequestMapping("/websocket")
+    public String websocket(Model model){
+        return "websocket/websocket" ;
+    }
 }

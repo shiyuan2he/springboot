@@ -21,12 +21,16 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
         //注册节点endpointSpringboot，并制定sockJs协议
-        stompEndpointRegistry.addEndpoint("/endpointSpringboot").withSockJS();
+        //SockJs是一个WebSocket的通信js库，Spring对这个js库进行了后台的自动支持，也就是说，我们如果使用SockJs，那么我们就不需要对后台进行更多的配置，只需要加上这一句就可以了。
+        stompEndpointRegistry.addEndpoint("/endpointWebsocket").withSockJS();
+        stompEndpointRegistry.addEndpoint("/endpointChat").withSockJS();
     }
     // 配置消息代理
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry){
-        //广播式配置一个/topic消息代理
-        registry.enableSimpleBroker("/topic") ;
+        //广播式配置一个/topic消息代理;网页上要发送消息到服务器上的地址是/pc/topic
+        System.out.println("websocket....");
+        registry.enableSimpleBroker("/topic","/queue") ;
+        //registry.setApplicationDestinationPrefixes("/pc");
     }
 }
