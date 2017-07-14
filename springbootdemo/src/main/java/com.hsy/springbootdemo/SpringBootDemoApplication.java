@@ -5,6 +5,7 @@ import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,8 +13,10 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * @author heshiyuan
@@ -25,15 +28,15 @@ import org.springframework.web.bind.annotation.RestController;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@RestController
+@Controller
 @SpringBootApplication
-//@ImportResource({"classpath:application-context.xml"})
+@MapperScan(basePackages = "com.hsy.springbootdemo.mapper")
 public class SpringBootDemoApplication {
     @Autowired
     Author author ;
     @RequestMapping("/")
-    public String getData(){
-        return "hello spring boot world"+author.getName() + author.getTimes();
+    String home() {
+        return "redirect:countries";
     }
     public static void main(String[] args){
         SpringApplication.run(SpringBootDemoApplication.class,args);

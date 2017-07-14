@@ -23,13 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
-                .antMatchers("/","/views/login","/websocket/chat").permitAll()//设置对 /,/login不拦截
+                .antMatchers("/","/views/login","/websocket/chat","/countries").permitAll()//设置对 /,/login不拦截
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login.do")//  登录页面 的访问路径为/login
                 .defaultSuccessUrl("/views/chat").permitAll()//   登录成功之后转向/chat路径
                 .and()
-                .logout().permitAll() ;
+                .logout().permitAll()
+        ;
+
     }
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{

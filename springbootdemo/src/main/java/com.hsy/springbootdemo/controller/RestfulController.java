@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @price ¥5    微信：hewei1109
  */
 @RestController
+@RequestMapping("/rest")
 public class RestfulController {
 
     @Autowired
     Author author ;
-    @RequestMapping("/restful")
+    @RequestMapping("/getData")
     public String getData(){
         return "hello spring boot world,my name is "+ author.getName();
     }
