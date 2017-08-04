@@ -22,18 +22,16 @@
  * THE SOFTWARE.
  */
 
-package com.hsy.springbootdemo.util;
+package tk.mybatis.springboot.util;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
+
 /**
- * @description <p></p>
- * @param
- * @author heshiyuan
- * @date 2017/7/14 16:59
- * @email shiyuan4work@sina.com
- * @github https://github.com/shiyuan2he.git
- * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved
+ * 继承自己的MyMapper
+ *
+ * @author liuzh
+ * @since 2015-09-06 21:53
  */
 public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
     //TODO

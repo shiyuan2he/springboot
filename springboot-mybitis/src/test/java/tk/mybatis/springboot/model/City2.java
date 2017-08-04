@@ -22,20 +22,59 @@
  * THE SOFTWARE.
  */
 
-package com.hsy.springbootdemo.util;
+package tk.mybatis.springboot.model;
 
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.MySqlMapper;
 /**
- * @description <p></p>
- * @param
- * @author heshiyuan
- * @date 2017/7/14 16:59
- * @email shiyuan4work@sina.com
- * @github https://github.com/shiyuan2he.git
- * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved
+ * mybatis 3.3.1新功能测试使用
+ *
+ * @author liuzh
+ * @since 2016-01-22 22:16
  */
-public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
-    //TODO
-    //FIXME 特别注意，该接口不能被扫描到，否则会出错
+public class City2 {
+    private Integer id;
+
+    private String cityName;
+
+    private String cityState;
+
+    public City2() {
+    }
+
+    public City2(String cityName, String cityState) {
+        this.cityName = cityName;
+        this.cityState = cityState;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getCityState() {
+        return cityState;
+    }
+
+    public void setCityState(String cityState) {
+        this.cityState = cityState;
+    }
+
+    @Override
+    public String toString() {
+        return "City2{" +
+                "id=" + id +
+                ", cityName='" + cityName + '\'' +
+                ", cityState='" + cityState + '\'' +
+                '}';
+    }
 }

@@ -22,20 +22,53 @@
  * THE SOFTWARE.
  */
 
-package com.hsy.springbootdemo.util;
+package tk.mybatis.springboot.model;
 
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.MySqlMapper;
-/**
- * @description <p></p>
- * @param
- * @author heshiyuan
- * @date 2017/7/14 16:59
- * @email shiyuan4work@sina.com
- * @github https://github.com/shiyuan2he.git
- * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved
- */
-public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
-    //TODO
-    //FIXME 特别注意，该接口不能被扫描到，否则会出错
+public class Country extends BaseEntity {
+    /**
+     * 名称
+     */
+    private String countryname;
+
+    /**
+     * 代码
+     */
+    private String countrycode;
+
+    /**
+     * 获取名称
+     *
+     * @return countryname - 名称
+     */
+    public String getCountryname() {
+        return countryname;
+    }
+
+    /**
+     * 设置名称
+     *
+     * @param countryname 名称
+     */
+    public void setCountryname(String countryname) {
+        this.countryname = countryname;
+    }
+
+    /**
+     * 获取代码
+     *
+     * @return countrycode - 代码
+     */
+    public String getCountrycode() {
+        return countrycode;
+    }
+
+    /**
+     * 设置代码
+     *
+     * @param countrycode 代码
+     */
+    public void setCountrycode(String countrycode) {
+        this.countrycode = countrycode;
+    }
+
 }

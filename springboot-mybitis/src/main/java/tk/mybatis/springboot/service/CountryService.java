@@ -22,20 +22,46 @@
  * THE SOFTWARE.
  */
 
-package com.hsy.springbootdemo.util;
+package tk.mybatis.springboot.service;
 
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.MySqlMapper;
+import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tk.mybatis.springboot.mapper.CountryMapper;
+import tk.mybatis.springboot.model.Country;
+
+import java.util.List;
+
 /**
- * @description <p></p>
- * @param
- * @author heshiyuan
- * @date 2017/7/14 16:59
- * @email shiyuan4work@sina.com
- * @github https://github.com/shiyuan2he.git
- * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved
+ * @author liuzh
+ * @since 2015-12-19 11:09
  */
-public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
-    //TODO
-    //FIXME 特别注意，该接口不能被扫描到，否则会出错
+@Service
+public class CountryService {
+
+    @Autowired
+    private CountryMapper countryMapper;
+
+    public List<Country> getAll(Country country) {
+        if (country.getPage() != null && country.getRows() != null) {
+            PageHelper.startPage(country.getPage(), country.getRows());
+        }
+        return countryMapper.selectAll();
+    }
+
+    public Country getById(Integer id) {
+        return countryMapper.selectByPrimaryKey(id);
+    }
+
+    public void deleteById(Integer id) {
+        countryMapper.deleteByPrimaryKey(id);
+    }
+
+    public void save(Country country) {
+        if (country.getId() != null) {
+            countryMapper.updateByPrimaryKey(country);
+        } else {
+            countryMapper.insert(country);
+        }
+    }
 }

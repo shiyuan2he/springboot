@@ -22,20 +22,33 @@
  * THE SOFTWARE.
  */
 
-package com.hsy.springbootdemo.util;
+package com.hsy.springbootdemo.javabean.entitybean;
 
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.MySqlMapper;
 /**
- * @description <p></p>
- * @param
- * @author heshiyuan
- * @date 2017/7/14 16:59
- * @email shiyuan4work@sina.com
- * @github https://github.com/shiyuan2he.git
- * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved
+ * @author liuzh_3nofxnp
+ * @since 2016-01-22 22:16
  */
-public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
-    //TODO
-    //FIXME 特别注意，该接口不能被扫描到，否则会出错
+public class Province extends BaseEntity {
+    private String name;
+    private String code;
+    private Integer sortId ;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getCode() {
+        return code;
+    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public Integer getSortId() {
+        return sortId;
+    }
+    public void setSortId(Integer sortId) {
+        this.sortId = sortId;
+    }
 }

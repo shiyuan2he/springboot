@@ -1,12 +1,5 @@
 package com.hsy.springbootdemo.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 /**
  * @param
  * @author heshiyuan
@@ -16,14 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @github https://github.com/shiyuan2he.git
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
  */
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Override
+//@Configuration
+//@EnableWebSecurity
+//public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig{
+   /* @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
-                .antMatchers("/","/views/login","/websocket/chat","/countries").permitAll()//设置对 /,/login不拦截
+                .antMatchers("/","/views/login","/websocket/chat","/countries","/static").permitAll()//设置对 /,/login不拦截
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login.do")//  登录页面 的访问路径为/login
@@ -42,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(WebSecurity webSecurity) throws Exception{
-        //  /resources/static/**下的静态资源不拦截
-        webSecurity.ignoring().antMatchers("/resources/static/**") ;
-    }
+        //  /resources/static*//**下的静态资源不拦截
+        webSecurity.ignoring().antMatchers("/resources/static*//**") ;
+    }*/
 }
