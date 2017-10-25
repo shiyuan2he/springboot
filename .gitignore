@@ -2,7 +2,9 @@
 .idea/*
 */.idea
 */*.iml
+*/*/*.iml
 */target
+*/*/target
 .DS_Store
 */DS_Store
 */*/.DS_Store
