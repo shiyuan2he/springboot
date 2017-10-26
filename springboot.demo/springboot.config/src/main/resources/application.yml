@@ -1,14 +1,13 @@
+spring:
+  profiles:
+    active: dev
 my:
- name: forezp
- age: 12
+ name: heshiyuan
+ age: 18
  number:  ${random.int}
  uuid : ${random.uuid}
  max: ${random.int(10)}
  value: ${random.value}
  greeting: hi,i'm  ${my.name}
-
-spring:
-  profiles:
-    active: dev
 
 
