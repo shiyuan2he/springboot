@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author heshiyuan
- * @description <p></p>
+ * @description <p>入口</p>
  * @path springboot.demo/com.hsy.springboot.demo.springboot.config
  * @date 24/10/2017 4:30 PM
  * @github http://github.com/shiyuan2he

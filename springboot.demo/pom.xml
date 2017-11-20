@@ -15,9 +15,9 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <module>springboot.mybatis</module>
-        <module>springboot.jdbc</module>
         <module>springboot.config</module>
+        <module>springboot.jdbc</module>
+        <module>springboot.mybatis</module>
         <module>springboot.jpa</module>
     </modules>
 

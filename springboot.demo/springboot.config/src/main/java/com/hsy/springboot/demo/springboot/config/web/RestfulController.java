@@ -5,6 +5,7 @@ import com.hsy.springboot.demo.springboot.config.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,20 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
  * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
  */
 @RestController
-@RequestMapping(value="/rest")
+@RequestMapping(value="/api/restful/")
 @EnableConfigurationProperties({ConfigBean.class,User.class})
 public class RestfulController {
     @Autowired
     ConfigBean configBean;
 
-    @RequestMapping(value = "/bean",method = RequestMethod.GET)
+    @RequestMapping(value = "/v1.0/configBean",method = RequestMethod.GET)
     public String beanValue(){
         return configBean.getGreeting()+" >>>>"+configBean.getName()+" >>>>"+ configBean.getUuid()+" >>>>"+configBean.getMax();
     }
 
     @Autowired
     User user;
-    @RequestMapping(value = {"/user","/getUser"},method = RequestMethod.GET)
+    @RequestMapping(value = {"/v1.0/user/list","/users"},method = RequestMethod.GET)
     public String user(){
         return user.getName()+user.getAge();
     }
@@ -41,7 +42,7 @@ public class RestfulController {
     @Value("${my.age}")
     private int age;
 
-    @RequestMapping(value = "/data",method = RequestMethod.GET)
+    @RequestMapping(value = "/v1.0/my",method = RequestMethod.GET)
     public String dataValue(){
         return name+":"+age;
     }

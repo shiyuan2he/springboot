@@ -3,6 +3,7 @@
 */.idea
 */*.iml
 */*/*.iml
+*.iml
 */target
 */*/target
 .DS_Store
