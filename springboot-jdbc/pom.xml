@@ -29,5 +29,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hsy.springboot</groupId>
+            <artifactId>springboot-rpc-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hsy.java</groupId>
+            <artifactId>java-exception</artifactId>
+        </dependency>
     </dependencies>
 </project>

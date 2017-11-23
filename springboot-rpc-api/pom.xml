@@ -9,7 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-bean</artifactId>
+    <artifactId>springboot-rpc-api</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.hsy.java</groupId>
+            <artifactId>java-bean</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -1,14 +1,6 @@
 package com.hsy.springboot.jdbc.dao.impl;
 
-import com.hsy.springboot.demo.springboot.jdbc.bean.entity.TProvince;
-import com.hsy.springboot.demo.springboot.jdbc.dao.ITProvinceDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -17,11 +9,11 @@ import java.util.List;
  * @github http://github.com/shiyuan2he
  * @email shiyuan4work@sina.com
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
- * @price ¥5    微信：hewei1109
+ * @price &yen;5    &#x5fae;&#x4fe1;&#xff1a;hewei1109
  */
 @Repository("provinceDao")
-public class TProvinceDaoImpl implements ITProvinceDao {
-    @Autowired
+public class TProvinceDaoImpl{
+    /*@Autowired
     private JdbcTemplate jdbcTemplate;
     @Override
     public List<TProvince> getTProvinceList() {
@@ -36,10 +28,10 @@ public class TProvinceDaoImpl implements ITProvinceDao {
     @Override
     public TProvince getTProvinceById(String id) {
         TProvince province = jdbcTemplate.queryForObject("select * from t_province where id = ?", new Object[]{id}, TProvince.class) ;
-        /*List<TProvince> list = jdbcTemplate.query("select * from t_province where id = ?", new Object[]{id}, new BeanPropertyRowMapper(TProvince.class));
+        *//*List<TProvince> list = jdbcTemplate.query("select * from t_province where id = ?", new Object[]{id}, new BeanPropertyRowMapper(TProvince.class));
         if(null!=list&&list.size()>0){
             return list.get(0);
-        }*/
+        }*//*
         return province;
-    }
+    */
 }

@@ -1,11 +1,5 @@
 package com.hsy.springboot.jdbc.dao.impl;
-
-import com.hsy.springboot.demo.springboot.jdbc.bean.entity.TUserInfo;
-import com.hsy.springboot.demo.springboot.jdbc.dao.ITUserInfoDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -17,13 +11,13 @@ import org.springframework.stereotype.Repository;
  * @price ¥5    微信：hewei1109
  */
 @Repository("userInfoDao")
-public class TUserInfoDaoImpl implements ITUserInfoDao{
-    @Autowired
+public class TUserInfoDaoImpl{
+    /*@Autowired
     private JdbcTemplate jdbcTemplate;
     @Override
     public int insertTUserInfo(TUserInfo userInfo) {
         return jdbcTemplate.update("insert into t_user_info(id,username,password,encryption_type,inserter,insert_time) values(?,?,?,?,?,?)",
                 userInfo.getId(),userInfo.getUsername(),userInfo.getPassword(),userInfo.getEncryptionType(),
                 userInfo.getInserter(),userInfo.getInsertTime());
-    }
+    }*/
 }
