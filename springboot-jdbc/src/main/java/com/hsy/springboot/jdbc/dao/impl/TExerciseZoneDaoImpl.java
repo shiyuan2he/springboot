@@ -17,7 +17,6 @@ import java.util.List;
  * @github http://github.com/shiyuan2he
  * @email shiyuan4work@sina.com
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
- * @price &yen;5    &#x5fae;&#x4fe1;&#xff1a;hewei1109
  */
 @Repository("exerciseDao")
 public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
@@ -28,7 +27,7 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
     @Override
     public int insert(TExerciseZone exerciseZone) {
         try{
-            return jdbcTemplate.update(,
+            return jdbcTemplate.update(insertSql,
                     exerciseZone.getCode(),exerciseZone.getName(),exerciseZone.getParentId(),exerciseZone.getRemark());
         }catch(Exception e){
             throw new DBHandleException(DBEnum.DB_INSERT_RESULT_ERROR,e) ;
@@ -38,8 +37,7 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
     @Override
     public int[] batchInsert(List<Object[]> batchArgs) {
         try{
-            String sql = "insert into t_exercise_zone(code,name,parent_id,remark) values(?,?,?,?)" ;
-            return jdbcTemplate.batchUpdate(sql,batchArgs);
+            return jdbcTemplate.batchUpdate(insertSql,batchArgs);
         }catch(Exception e){
             throw new DBHandleException(DBEnum.DB_INSERT_RESULT_ERROR,e) ;
         }
