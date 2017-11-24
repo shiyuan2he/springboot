@@ -23,6 +23,7 @@ public interface ITExerciseZoneDao {
     int delete(Long id) ;
     int[] batchDelete(List<Long[]> ids);
 
+    String updateSql = "updte t_exercise_zone set " ;
     int update(TExerciseZone exerciseZone) ;
 
     TExerciseZone select(TExerciseZone exerciseZone) ;

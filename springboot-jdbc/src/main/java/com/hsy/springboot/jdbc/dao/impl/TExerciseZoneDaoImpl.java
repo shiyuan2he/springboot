@@ -4,6 +4,8 @@ import com.hsy.java.bean.po.TExerciseZone;
 import com.hsy.java.enums.DBEnum;
 import com.hsy.java.exception.dao.DBHandleException;
 import com.hsy.springboot.rpc.api.dao.ITExerciseZoneDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -20,7 +22,7 @@ import java.util.List;
  */
 @Repository("exerciseDao")
 public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
-
+    private static final Logger _logger = LoggerFactory.getLogger(TExerciseZoneDaoImpl.class) ;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -30,6 +32,7 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
             return jdbcTemplate.update(insertSql,
                     exerciseZone.getCode(),exerciseZone.getName(),exerciseZone.getParentId(),exerciseZone.getRemark());
         }catch(Exception e){
+            _logger.error("出错信息:{}",e);
             throw new DBHandleException(DBEnum.DB_INSERT_RESULT_ERROR,e) ;
         }
     }
@@ -53,12 +56,30 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
 
     @Override
     public int[] batchDelete(List<Long[]> ids) {
+        try{
+            List<Object[]> oids = null ;
+            ids.forEach(id -> {
+                Object[] oid = null ;
+                for(int i=0;i<id.length;i++){
+                    oid[i] = id[i] ;
+                }
+                oids.add(oid) ;
+            });
+            return jdbcTemplate.batchUpdate(deleteSql,oids) ;
+        }catch (Exception e){
+
+        }
         return new int[0];
     }
 
     @Override
     public int update(TExerciseZone exerciseZone) {
-        return 0;
+        try{
+            //return jdbcTemplate.update(deleteSql,id);
+        }catch(Exception e){
+            throw new DBHandleException(DBEnum.DB_DELETE_RESULT_ERROR,e) ;
+        }
+        return 0 ;
     }
 
     @Override
