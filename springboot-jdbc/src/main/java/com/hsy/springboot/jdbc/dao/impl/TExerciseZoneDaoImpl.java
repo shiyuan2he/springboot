@@ -7,6 +7,8 @@ import com.hsy.springboot.rpc.api.dao.ITExerciseZoneDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -75,40 +77,44 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
     @Override
     public int update(TExerciseZone exerciseZone) {
         try{
-            //return jdbcTemplate.update(deleteSql,id);
+            return jdbcTemplate.update(updateSql,exerciseZone.getCode(),exerciseZone.getName(),exerciseZone.getParentId(),
+                    exerciseZone.getSortId(),exerciseZone.getRemark(),exerciseZone.getId());
         }catch(Exception e){
-            throw new DBHandleException(DBEnum.DB_DELETE_RESULT_ERROR,e) ;
+            throw new DBHandleException(DBEnum.DB_UPDATE_RESULT_ERROR,e) ;
         }
-        return 0 ;
     }
 
     @Override
-    public TExerciseZone select(TExerciseZone exerciseZone) {
-        return null;
+    public int[] batchUpdate(List<Object[]> batchArgs) {
+        try {
+            return jdbcTemplate.batchUpdate(updateSql,batchArgs);
+        } catch (DataAccessException e) {
+            _logger.error("反生异常：{}",e);
+            throw new DBHandleException(DBEnum.DB_UPDATE_RESULT_ERROR,e);
+        }
+    }
+
+    @Override
+    public TExerciseZone select(Long id) {
+        TExerciseZone queryExerciseZone = jdbcTemplate.queryForObject(selectSql,new Object[]{id},new BeanPropertyRowMapper<>(TExerciseZone.class)) ;
+        if(null!=queryExerciseZone){
+            return queryExerciseZone;
+        }
+        return new TExerciseZone() ;
     }
 
     @Override
     public List<TExerciseZone> selectAll(int offset, int limit) {
+        List<TExerciseZone> list = null;
+        try {
+            list = jdbcTemplate.query(selectAllSql,new Object[]{offset,limit},new BeanPropertyRowMapper<>(TExerciseZone.class));
+        } catch (DataAccessException e) {
+            _logger.error("捕获异常：",e);
+            throw new DBHandleException(DBEnum.DB_SELECT_IS_NULL,e);
+        }
+        if(null!=list&&list.size()>0){
+            return list ;
+        }
         return null;
     }
-    /*
-    @Override
-    public List<TProvince> getTProvinceList() {
-        List<TProvince> list = jdbcTemplate.query("select * from t_province", new Object[]{}, new BeanPropertyRowMapper(TProvince.class));
-        if(list!=null && list.size()>0){
-            return list;
-        }else{
-            return null;
-        }
-    }
-
-    @Override
-    public TProvince getTProvinceById(String id) {
-        TProvince province = jdbcTemplate.queryForObject("select * from t_province where id = ?", new Object[]{id}, TProvince.class) ;
-        *//*List<TProvince> list = jdbcTemplate.query("select * from t_province where id = ?", new Object[]{id}, new BeanPropertyRowMapper(TProvince.class));
-        if(null!=list&&list.size()>0){
-            return list.get(0);
-        }*//*
-        return province;
-    */
 }

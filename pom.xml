@@ -54,6 +54,11 @@
                 <artifactId>java-exception</artifactId>
                 <version>${version.hsy.java}</version>
             </dependency>
+            <dependency>
+                <groupId>com.hsy.java</groupId>
+                <artifactId>java-util</artifactId>
+                <version>${version.hsy.java}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

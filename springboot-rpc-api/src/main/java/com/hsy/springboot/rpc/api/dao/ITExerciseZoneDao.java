@@ -15,7 +15,7 @@ import java.util.List;
  * @price ¥5    微信：hewei1109
  */
 public interface ITExerciseZoneDao {
-    String insertSql = "insert into t_exercise_zone(code,name,parent_id,remark) values(?,?,?,?)" ;
+    String insertSql = "insert into t_exercise_zone(code,name,parent_id,remark,sort_id) values(?,?,?,?,?)" ;
     int insert(TExerciseZone exerciseZone);
     int[] batchInsert(List<Object[]> batchArgs);
 
@@ -23,10 +23,18 @@ public interface ITExerciseZoneDao {
     int delete(Long id) ;
     int[] batchDelete(List<Long[]> ids);
 
-    String updateSql = "updte t_exercise_zone set " ;
+    String updateSql = "updte t_exercise_zone set " +
+            "code = ?," +
+            "name = ?," +
+            "parent_id = ?," +
+            "sort_id = ?," +
+            "remark = ? " +
+            " where id = ?" ;
     int update(TExerciseZone exerciseZone) ;
+    int[] batchUpdate(List<Object[]> batchArgs);
 
-    TExerciseZone select(TExerciseZone exerciseZone) ;
-
+    String selectSql = "select * from t_exercise_zone where id = ?" ;
+    TExerciseZone select(Long id) ;
+    String selectAllSql = "select * from t_exercise_zone limit ?,?" ;
     List<TExerciseZone> selectAll(int offset,int limit) ;
 }
