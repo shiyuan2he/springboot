@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsy.springboot.mybatis.mapper.TExerciseZoneMapper">
+
+    <select id="selectAll" resultType="TExerciseZone">
+        select * from t_exercise_zone_test where 1 = 1;
+    </select>
+
+    <select id="getProvinceById" resultMap="defaultProvinceResultMap">
+        select * from t_exercise_zone_test WHERE 1 = 1
+        <if test="id!=null || ''!=id">
+            AND id = #{id}
+        </if>
+    </select>
+
+    <update id="update">
+        update t_exercise_zone_test set parent_id = #{parentId} WHERE id = #{id}
+    </update>
+</mapper>
