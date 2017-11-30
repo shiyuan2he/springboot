@@ -33,5 +33,9 @@
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.hsy.java</groupId>
+            <artifactId>java-bean</artifactId>
+        </dependency>
     </dependencies>
 </project>

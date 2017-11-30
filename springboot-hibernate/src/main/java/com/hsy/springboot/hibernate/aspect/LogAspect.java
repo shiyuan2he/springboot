@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class LogAspect {
     private final static Logger _logger = LoggerFactory.getLogger(LogAspect.class) ;
+    /*
     @Pointcut("execution(public * com.hsy.springboot.demo.jpa.web.*.*(..))")
     public void logAspect(){}
 
@@ -52,4 +53,5 @@ public class LogAspect {
     public void doAfter(){
         _logger.info("【切面日志】调用方法后。。");
     }
+    */
 }

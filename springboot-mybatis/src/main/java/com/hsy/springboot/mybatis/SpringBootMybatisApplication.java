@@ -1,5 +1,6 @@
 package com.hsy.springboot.mybatis;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @price ¥5    微信：hewei1109
  */
 @SpringBootApplication
+@MapperScan("com.hsy.springboot.mybatis.mapper")
 public class SpringBootMybatisApplication {
     public static void main(String[] args){
         SpringApplication.run(SpringBootMybatisApplication.class,args) ;
