@@ -29,6 +29,7 @@
         <module>springboot-submit-form</module>
         <module>springboot-jms</module>
         <module>springboot-async</module>
+        <module>springboot-security</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
@@ -41,6 +42,7 @@
         <version.mybatis.springboot>1.3.1</version.mybatis.springboot>
         <version.swagger>2.7.0</version.swagger>
         <version.jackson.databind>2.8.10</version.jackson.databind>
+        <version.c3p0.mchange>0.9.5.2</version.c3p0.mchange>
     </properties>
 
     <dependencyManagement>
@@ -99,6 +101,17 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${version.jackson.databind}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>${version.c3p0.mchange}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
