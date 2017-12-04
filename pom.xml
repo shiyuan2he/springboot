@@ -30,6 +30,8 @@
         <module>springboot-jms</module>
         <module>springboot-async</module>
         <module>springboot-security</module>
+        <module>springboot-freemarker</module>
+        <module>springboot-servlet</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
