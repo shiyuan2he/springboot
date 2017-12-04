@@ -30,6 +30,7 @@
         <module>springboot-jms</module>
         <module>springboot-async</module>
         <module>springboot-security</module>
+        <module>springboot-template-jsp</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
@@ -137,10 +138,6 @@
                         <delimiter>${*}</delimiter>
                     </delimiters>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
