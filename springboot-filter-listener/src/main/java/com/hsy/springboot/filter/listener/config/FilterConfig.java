@@ -7,9 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FilterConfig {
-   /* @Bean
+   @Bean
     public FilterRegistrationBean filterRegistrationBean(){
         return new FilterRegistrationBean(new MyFilter()) ;
-    }*/
-
+    }
 }

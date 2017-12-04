@@ -17,6 +17,7 @@ public class MyFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         _logger.info("处理 filter 业务 ...");
+        filterChain.doFilter(servletRequest,servletResponse);
     }
 
     @Override

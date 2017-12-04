@@ -30,13 +30,10 @@
         <module>springboot-jms</module>
         <module>springboot-async</module>
         <module>springboot-security</module>
-<<<<<<< HEAD
         <module>springboot-template-jsp</module>
-=======
-        <module>springboot-freemarker</module>
+        <module>springboot-template-freemarker</module>
         <module>springboot-servlet</module>
         <module>springboot-filter-listener</module>
->>>>>>> c0b27b74b6d838c94997c15cfeed24ed8f8de599
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
