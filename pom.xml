@@ -36,6 +36,7 @@
         <module>springboot-filter-listener</module>
         <module>springboot-interceptor</module>
         <module>springboot-runner</module>
+        <module>springboot-slf4j</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
