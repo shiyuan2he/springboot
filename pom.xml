@@ -34,6 +34,7 @@
         <module>springboot-template-freemarker</module>
         <module>springboot-servlet</module>
         <module>springboot-filter-listener</module>
+        <module>springboot-interceptor</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
