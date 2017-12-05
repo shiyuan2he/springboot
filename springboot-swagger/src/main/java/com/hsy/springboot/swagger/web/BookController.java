@@ -75,9 +75,9 @@ public class BookController {
     }
 
     @ApiIgnore//使用该注解忽略这个API
-    @RequestMapping(value = "/hi", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String  jsonTest() {
-        return " hi you!";
+        return "world!";
     }
 
 }
