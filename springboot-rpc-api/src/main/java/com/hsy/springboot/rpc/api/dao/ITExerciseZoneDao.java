@@ -35,6 +35,6 @@ public interface ITExerciseZoneDao {
 
     String selectSql = "select * from t_exercise_zone where id = ?" ;
     TExerciseZone select(Long id) ;
-    String selectAllSql = "select * from t_exercise_zone limit ?,?" ;
-    List<TExerciseZone> selectAll(int offset,int limit) ;
+    String selectAllSql = "select * from t_exercise_zone " ;
+    List<TExerciseZone> selectAll(Integer offset,Integer limit) ;
 }

@@ -90,11 +90,11 @@ public class RestfulController extends BaseController{
     }
     @ApiOperation(value = "批量查询",tags = "批量查询服务")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "offset",value = "从第几个开始查询",required = true,dataType = "Integer"),
-        @ApiImplicitParam(name = "limit",value = "每页显示几个",required = true,dataType = "Integer")
+        @ApiImplicitParam(name = "offset",value = "从第几个开始查询",dataType = "Integer"),
+        @ApiImplicitParam(name = "limit",value = "每页显示几个",dataType = "Integer")
     })
     @GetMapping(value = {"/v1/zones","/v1/zones/{offset}/{limit}"})
-    public ResponseBodyBean<List<TExerciseZone>> getZones(@PathVariable Integer offset,@PathVariable Integer limit){
+    public ResponseBodyBean<List<TExerciseZone>> getZones(@PathVariable(required = false) Integer offset,@PathVariable(required = false) Integer limit){
         return success(exerciseZoneService.getList(offset,limit));
     }
 }

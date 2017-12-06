@@ -4,6 +4,7 @@ import com.hsy.java.bean.po.TExerciseZone;
 import com.hsy.java.enums.DBEnum;
 import com.hsy.java.exception.dao.DBHandleException;
 import com.hsy.springboot.rpc.api.dao.ITExerciseZoneDao;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,10 +105,14 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
     }
 
     @Override
-    public List<TExerciseZone> selectAll(int offset, int limit) {
+    public List<TExerciseZone> selectAll(Integer offset, Integer limit) {
         List<TExerciseZone> list = null;
         try {
-            list = jdbcTemplate.query(selectAllSql,new Object[]{offset,limit},new BeanPropertyRowMapper<>(TExerciseZone.class));
+            if(null!=offset&&null!=limit){
+                list = jdbcTemplate.query(selectAllSql + "limit ?,?",new Object[]{offset,limit},new BeanPropertyRowMapper<>(TExerciseZone.class));
+            }else{
+                list = jdbcTemplate.query(selectAllSql,new Object[]{},new BeanPropertyRowMapper<>(TExerciseZone.class));
+            }
         } catch (DataAccessException e) {
             _logger.error("捕获异常：",e);
             throw new DBHandleException(DBEnum.DB_SELECT_IS_NULL,e);
