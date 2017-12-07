@@ -109,7 +109,7 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
         List<TExerciseZone> list = null;
         try {
             if(null!=offset&&null!=limit){
-                list = jdbcTemplate.query(selectAllSql + "limit ?,?",new Object[]{offset,limit},new BeanPropertyRowMapper<>(TExerciseZone.class));
+                list = jdbcTemplate.query(selectAllSql + " limit ?,?",new Object[]{offset,limit},new BeanPropertyRowMapper<>(TExerciseZone.class));
             }else{
                 list = jdbcTemplate.query(selectAllSql,new Object[]{},new BeanPropertyRowMapper<>(TExerciseZone.class));
             }
