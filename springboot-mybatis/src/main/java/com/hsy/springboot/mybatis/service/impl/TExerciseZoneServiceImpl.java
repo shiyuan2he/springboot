@@ -13,8 +13,8 @@ public class TExerciseZoneServiceImpl implements ITExerciseZoneService{
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired private TExerciseZoneMapper tExerciseZoneMapper ;
     @Override
-    public List<TExerciseZone> getAll() {
-        return null;
+    public List<TExerciseZone> getAll(Integer offset,Integer limit) {
+        return tExerciseZoneMapper.selectAll(offset,limit);
     }
     @Transactional
     @Override

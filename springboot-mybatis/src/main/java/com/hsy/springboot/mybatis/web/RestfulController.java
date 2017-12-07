@@ -1,11 +1,15 @@
 package com.hsy.springboot.mybatis.web;
 
 import com.hsy.java.bean.dto.ResponseBodyBean;
+import com.hsy.java.bean.po.TExerciseZone;
 import com.hsy.java.bean.web.BaseController;
 import com.hsy.springboot.mybatis.service.ITExerciseZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -25,5 +29,10 @@ public class RestfulController extends BaseController{
     @RequestMapping(value = "/update/{id}",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseBodyBean<Boolean> update(@PathVariable Long id,@RequestParam Integer parentId){
         return success(exerciseZoneService.update(parentId,id)) ;
+    }
+
+    @GetMapping(value = {"/v1/zones/{offset}/{limit}"})
+    public ResponseBodyBean<List<TExerciseZone>> zoneList(@PathVariable Integer offset, @PathVariable Integer limit){
+        return success(exerciseZoneService.getAll(offset,limit)) ;
     }
 }

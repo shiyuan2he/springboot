@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ITExerciseZoneService {
 
-    List<TExerciseZone> getAll() ;
+    List<TExerciseZone> getAll(Integer offset,Integer limit) ;
 
     Boolean update(Integer parentId,Long id) ;
 }

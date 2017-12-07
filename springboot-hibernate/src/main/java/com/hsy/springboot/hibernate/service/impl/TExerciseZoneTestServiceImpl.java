@@ -79,7 +79,7 @@ public class TExerciseZoneTestServiceImpl implements ITExerciseZoneTestService{
     @Override
     public Page<TExerciseZone> getList(Integer offset, Integer limit) {
         Integer currentPage=0,pageSize=0;
-        if(offset / limit == 0){
+        if(offset % limit == 0){
             currentPage = offset / limit ;
         }else{
             currentPage = (offset / limit) + 1;
