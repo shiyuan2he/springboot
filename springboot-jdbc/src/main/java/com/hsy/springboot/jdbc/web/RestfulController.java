@@ -40,7 +40,7 @@ public class RestfulController extends BaseController{
     @Autowired private ITExerciseZoneService exerciseZoneService ;
 
     @ApiOperation(value = "用户注册接口",tags = "对外提供用户注册接口")
-    @GetMapping(value = "/v1/reg",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/v1/reg",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseBodyBean<Boolean> reg(@RequestParam(value = "code") Integer code, @RequestParam String name,
                                       @RequestParam Long parentId, @RequestParam(required = false) Integer sortId, String remark){
         return success(exerciseZoneService.createTExerciseZone(code, name, parentId, sortId, remark));

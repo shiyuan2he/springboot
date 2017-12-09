@@ -33,7 +33,7 @@ public class TExerciseZoneDaoImpl implements ITExerciseZoneDao{
     public int insert(TExerciseZone exerciseZone) {
         try{
             return jdbcTemplate.update(insertSql,
-                    exerciseZone.getCode(),exerciseZone.getName(),exerciseZone.getParentId(),exerciseZone.getRemark());
+                    exerciseZone.getCode(),exerciseZone.getName(),exerciseZone.getParentId(), exerciseZone.getSortId(),exerciseZone.getRemark());
         }catch(Exception e){
             _logger.error("出错信息:{}",e);
             throw new DBHandleException(DBEnum.DB_INSERT_RESULT_ERROR,e) ;

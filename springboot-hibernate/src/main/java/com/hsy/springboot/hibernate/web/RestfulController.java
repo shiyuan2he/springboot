@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,17 +23,11 @@ import java.util.List;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
+@RestController
+@RequestMapping("/api/rest")
 public class RestfulController extends BaseController{
     private Logger _logger = LoggerFactory.getLogger(this.getClass()) ;
     @Autowired private ITExerciseZoneTestService exerciseZoneSerivce;
-    /*@RequestMapping(value="/reg",method = RequestMethod.GET)
-    public String reg(@Valid TUserInfo userInfo, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            _logger.info(bindingResult.getFieldError().getDefaultMessage());
-            return bindingResult.getFieldError().getDefaultMessage() ;
-        }
-        return "success";
-    }*/
     @RequestMapping(value = "/v1/reg",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseBodyBean<Boolean> reg(@RequestParam(value = "code") Integer code, @RequestParam String name,
                                          @RequestParam Long parentId, @RequestParam(required = false) Integer sortId, String remark){
