@@ -4,10 +4,10 @@
 <mapper namespace="com.hsy.springboot.mybatis.mapper.TExerciseZoneMapper">
 
     <select id="selectAll" resultType="TExerciseZone">
-        select * from t_exercise_zone_test where 1 = 1;
+        select * from t_exercise_zone_test where 1 = 1 limit #{offset} , #{limit};
     </select>
 
-    <select id="getProvinceById" resultMap="defaultProvinceResultMap">
+    <select id="getProvinceById" resultType="TExerciseZone">
         select * from t_exercise_zone_test WHERE 1 = 1
         <if test="id!=null || ''!=id">
             AND id = #{id}

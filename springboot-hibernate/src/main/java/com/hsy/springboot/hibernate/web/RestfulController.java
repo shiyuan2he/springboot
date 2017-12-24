@@ -28,6 +28,7 @@ import java.util.List;
 public class RestfulController extends BaseController{
     private Logger _logger = LoggerFactory.getLogger(this.getClass()) ;
     @Autowired private ITExerciseZoneTestService exerciseZoneSerivce;
+
     @RequestMapping(value = "/v1/reg",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseBodyBean<Boolean> reg(@RequestParam(value = "code") Integer code, @RequestParam String name,
                                          @RequestParam Long parentId, @RequestParam(required = false) Integer sortId, String remark){
@@ -66,7 +67,7 @@ public class RestfulController extends BaseController{
     }
 
     @RequestMapping(value = {"/v1/zones","/v1/zones/{offset}/{limit}"},method = RequestMethod.GET)
-    public ResponseBodyBean<List<TExerciseZone>> getZones(@PathVariable Integer offset,@PathVariable Integer limit){
+    public ResponseBodyBean<List<TExerciseZone>> getZones(@PathVariable(required = false) Integer offset,@PathVariable(required = false) Integer limit){
         Page<TExerciseZone> page = exerciseZoneSerivce.getList(offset,limit) ;
         return success();
     }
