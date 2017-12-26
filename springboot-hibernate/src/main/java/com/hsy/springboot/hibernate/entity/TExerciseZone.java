@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
-
 @Entity(name = "t_exercise_zone_test")
 public class TExerciseZone implements Serializable{
     @Id
