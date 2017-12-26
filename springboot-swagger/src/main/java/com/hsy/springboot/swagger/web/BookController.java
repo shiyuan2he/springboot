@@ -23,7 +23,6 @@ import java.util.*;
      ApiError ：发生错误返回的信息
      ApiParamImplicitL：一个请求参数
      ApiParamsImplicit 多个请求参数
-
  */
 @Api(value = "书籍接口",description = "书籍相关的处理")
 @RestController

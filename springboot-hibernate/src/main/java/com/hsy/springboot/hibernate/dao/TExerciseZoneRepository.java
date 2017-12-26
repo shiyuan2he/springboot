@@ -15,5 +15,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository(value = "exerciseZoneRepository")
 public interface TExerciseZoneRepository extends JpaRepository<TExerciseZone,Long> {
-
 }

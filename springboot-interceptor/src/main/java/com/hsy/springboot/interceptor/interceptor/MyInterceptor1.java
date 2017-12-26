@@ -20,6 +20,7 @@ public class MyInterceptor1 implements HandlerInterceptor{
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
         _logger.info("this is MyInterceptor1 postHandle");
+
     }
 
     @Override
