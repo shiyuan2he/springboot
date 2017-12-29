@@ -1,6 +1,6 @@
 package com.hsy.springboot.redis;
 
-import com.hsy.springboot.redis.dao.RedisDao;
+import com.hsy.springboot.redis.dao.RedisRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -15,17 +15,19 @@ public class RedisDaoTest {
     private final Logger _logger = LoggerFactory.getLogger(this.getClass()) ;
 
     @SuppressWarnings("SpringJavaAutowiringInspection")
-    @Autowired private RedisDao redisDao ;
+    @Autowired private RedisRepository redisRepository ;
     @Test
-    public void setKey() throws Exception {
-        redisDao.setKey("name","hsy");
-        redisDao.setKey("age","18");
+    public void putCache() throws Exception {
+        redisRepository.putCache("test:redis","sfasdfasdfsdf") ;
     }
 
     @Test
-    public void getValue() throws Exception {
-        _logger.info(redisDao.getValue("name"));
-        _logger.info(redisDao.getValue("age"));
+    public void putCacheWithExpireTime() throws Exception {
+        redisRepository.putCacheWithExpireTime("test:redis2","sfasdfasdfsdf",5) ;
     }
 
+    @Test
+    public void delete() throws Exception {
+        redisRepository.deleteCacheByKey("test:redis");
+    }
 }

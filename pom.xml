@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>
+        <version>1.5.9.RELEASE</version>
     </parent>
     <groupId>com.hsy.springboot</groupId>
     <artifactId>springboot</artifactId>
@@ -37,6 +37,7 @@
         <module>springboot-interceptor</module>
         <module>springboot-runner</module>
         <module>springboot-slf4j</module>
+        <module>springboot-redis-sentinel</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
