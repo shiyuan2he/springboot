@@ -121,6 +121,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         factory.setTimeout(timeout);
         factory.setPassword(password);
         factory.setDatabase(database);
+        factory.setPoolConfig(jedisPoolConfig());
         return factory;
     }
 
