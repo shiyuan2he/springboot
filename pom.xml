@@ -36,8 +36,9 @@
         <module>springboot-filter-listener</module>
         <module>springboot-interceptor</module>
         <module>springboot-runner</module>
-        <module>springboot-slf4j</module>
+        <module>springboot-logback</module>
         <module>springboot-redis-sentinel</module>
+        <module>springboot-log4j2</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
