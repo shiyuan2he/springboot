@@ -1,4 +1,4 @@
-package com.hsy.springboot.slf4j;
+package com.hsy.springboot.logback;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +16,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @price ¥5    微信：hewei1109
  */
 @SpringBootApplication
-public class SpringBootSlf4jApplication {
-    private final static Logger _logger = LoggerFactory.getLogger(SpringBootSlf4jApplication.class);
+public class LogbackApplication {
+    private final static Logger _logger = LoggerFactory.getLogger(LogbackApplication.class);
     public static void main(String[] args) {
         _logger.info("this is springboot main");
-        SpringApplication.run(SpringBootSlf4jApplication.class,args);
+        SpringApplication.run(LogbackApplication.class,args);
     }
 }
