@@ -19,7 +19,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LogbackApplication {
     private final static Logger _logger = LoggerFactory.getLogger(LogbackApplication.class);
     public static void main(String[] args) {
-        _logger.info("this is springboot main");
+        for(int i=0;i<10;i++){
+            _logger.info("this is springboot main");
+        }
         SpringApplication.run(LogbackApplication.class,args);
     }
 }
