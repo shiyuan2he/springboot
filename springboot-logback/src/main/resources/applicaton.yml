@@ -1,2 +1,3 @@
-logging:
-  config: logback.xml
+spring:
+  profiles:
+    active: logbackTest
