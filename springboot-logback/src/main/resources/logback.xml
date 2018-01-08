@@ -15,7 +15,7 @@
     </appender>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>/home/hsy/logback/logfile.log</file>
+        <file>./logback/logfile.log</file>
         <append>true</append>
         <encoder>
             <pattern>${pattern}</pattern>
@@ -24,12 +24,12 @@
     </appender>
 
     <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/home/hsy/logback/log.log</File>
+        <File>./logback/log.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <FileNamePattern>logback.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>logback.%d{yyyy-MM-dd_HH}.log</FileNamePattern>
             <!-- keep 30 days' worth of history -->
-            <maxHistory>30</maxHistory>
+            <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder>
             <Pattern>${pattern}</Pattern>
