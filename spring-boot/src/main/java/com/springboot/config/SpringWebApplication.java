@@ -38,9 +38,6 @@ import java.util.concurrent.Executor;
 //@SpringBootAnnotation
 public class SpringWebApplication extends WebMvcConfigurerAdapter implements AsyncConfigurer {
 
-    public static void main(String[] args){
-        SpringApplication.run(SpringbootApplication.class,args) ;
-    }
     /**
      * @description <p>springMVC视图前后缀匹配文件</p>
      * @param
