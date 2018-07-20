@@ -39,6 +39,7 @@
         <module>springboot-logback</module>
         <module>springboot-redis-sentinel</module>
         <module>springboot-log4j2</module>
+        <module>springboot-distributed-lock</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
@@ -165,6 +166,11 @@
                         <artifactId>commons-logging</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.hsy.java</groupId>
+                <artifactId>java-base</artifactId>
+                <version>${version.hsy.java}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

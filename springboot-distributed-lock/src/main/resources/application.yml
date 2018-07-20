@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    username: root
+    password: root@mariadb
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://172.16.191.102:3306/exercise?useUnicode=true&characterEncoding=UTF-8
