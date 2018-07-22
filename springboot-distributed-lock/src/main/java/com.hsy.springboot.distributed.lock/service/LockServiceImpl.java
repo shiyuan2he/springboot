@@ -1,5 +1,6 @@
 package com.hsy.springboot.distributed.lock.service;
 
+import com.hsy.springboot.distributed.lock.dao.RedisRepository;
 import com.hsy.springboot.distributed.lock.dao.TLockDaoImpl;
 import com.hsy.springboot.distributed.lock.dao.TStockDaoImpl;
 import org.slf4j.Logger;
@@ -22,16 +23,52 @@ public class LockServiceImpl {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired private TLockDaoImpl lockDao;
     @Autowired private TStockDaoImpl stockDao;
-
+    @Autowired private RedisRepository redisRepository;
+    
+    /**
+     * @description <p>数据库实现分布式锁</p>
+     * @author heshiyuan
+     * @date 2018/7/22 18:18 
+     * @email shiyuan4work@sina.com
+     * @github https://github.com/shiyuan2he.git
+     * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
+     */
     public void dbLock(){
         logger.info("开始业务");
         String lock = "dbLock" ;
         if(lockDao.insert(lock,"数据库实现分布式锁")>0){
             logger.info("进入lock区");
             logger.info("获取到数据库锁");
-            // 减库存
-            stockDao.reduce();
+            if (stockDao.getCount(1l) > 0) {
+                // 减库存
+                stockDao.reduce();
+            }
             lockDao.delete(lock);
+        }else{
+            logger.info("没有拿到锁，请求返回");
+        }
+        logger.info("结束业务");
+    }
+    /**
+     * @description <p>redis实现分布式锁</p>
+     * @author heshiyuan
+     * @date 2018/7/22 18:19
+     * @email shiyuan4work@sina.com
+     * @github https://github.com/shiyuan2he.git
+     * Copyright (c) 2016 shiyuan4work@sina.com All rights reserved
+     */
+    public void redisLock(){
+        logger.info("开始业务");
+        String key = "TO:redisLock";
+        if(redisRepository.getRedisTemplate().getConnectionFactory().getConnection().setNX(key.getBytes(), "redisLock".getBytes())){
+            redisRepository.getRedisTemplate().getConnectionFactory().getConnection().expire(key.getBytes(), 1000 * 300);
+            logger.info("进入lock区");
+            logger.info("获取到数据库锁");
+            if (stockDao.getCount(1l) > 0) {
+                // 减库存
+                stockDao.reduce();
+            }
+            redisRepository.getRedisTemplate().getConnectionFactory().getConnection().del(key.getBytes());
         }else{
             logger.info("没有拿到锁，请求返回");
         }

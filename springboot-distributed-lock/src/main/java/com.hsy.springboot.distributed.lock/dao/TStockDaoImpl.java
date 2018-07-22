@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -29,5 +30,20 @@ public class TStockDaoImpl {
         } catch (SQLException e) {
             return 0;
         }
+    }
+
+    public int getCount(long id){
+        Connection connection = DBUtils.getConnetction();
+        try {
+            ps = connection.prepareStatement("select count from t_stock where id = ?");
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            return 0;
+        }
+        return 0;
     }
 }

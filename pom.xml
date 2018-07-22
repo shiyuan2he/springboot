@@ -53,6 +53,7 @@
         <version.swagger>2.7.0</version.swagger>
         <version.jackson.databind>2.8.10</version.jackson.databind>
         <version.c3p0.mchange>0.9.5.2</version.c3p0.mchange>
+        <version.jedis>2.9.0</version.jedis>
     </properties>
 
     <dependencyManagement>
@@ -172,6 +173,13 @@
                 <artifactId>java-base</artifactId>
                 <version>${version.hsy.java}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${version.jedis}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <build>

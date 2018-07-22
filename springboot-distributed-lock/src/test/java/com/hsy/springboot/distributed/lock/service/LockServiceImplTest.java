@@ -1,6 +1,6 @@
 package com.hsy.springboot.distributed.lock.service;
 
-import com.hsy.java.java.base.utils.ConcurrentMock;
+import com.hsy.java.base.utils.ConcurrentMock;
 import com.hsy.springboot.distributed.lock.DistributedLockApplication;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +30,23 @@ public class LockServiceImplTest extends ConcurrentMock {
             e.printStackTrace();
         }
     }
+    @org.junit.Test
+    public void redisLock() {
+        try {
+            execute();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
-    @Override
+        @Override
     public int getConcurrentNo() {
         return 100;
     }
 
     @Override
     public void doMethod() {
-        lockService.dbLock();
+        lockService.redisLock();
     }
 
     @Override

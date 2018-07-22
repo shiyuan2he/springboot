@@ -1,4 +1,5 @@
-package com.hsy.springboot.redis.config;
+package com.hsy.springboot.distributed.lock.config;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +13,6 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.lang.reflect.Method;
@@ -27,7 +27,6 @@ import java.lang.reflect.Method;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@SuppressWarnings("Duplicates")
 @Configuration
 @EnableAutoConfiguration
 @EnableCaching
@@ -75,7 +74,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     public JedisConnectionFactory jedisConnectionFactory() {
         //构造方法中注入RedisSentinelConfiguration对象
         JedisConnectionFactory factory = new JedisConnectionFactory(jedisPoolConfig());
-        factory.setHostName("192.168.1.106");
+        factory.setHostName("192.168.175.128");
         factory.setPort(6379);
         factory.setTimeout(2000);
         factory.setDatabase(1);
