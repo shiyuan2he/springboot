@@ -27,6 +27,7 @@ import java.lang.reflect.Method;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
+@SuppressWarnings("Duplicates")
 @Configuration
 @EnableAutoConfiguration
 @EnableCaching
@@ -74,7 +75,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     public JedisConnectionFactory jedisConnectionFactory() {
         //构造方法中注入RedisSentinelConfiguration对象
         JedisConnectionFactory factory = new JedisConnectionFactory(jedisPoolConfig());
-        factory.setHostName("192.168.175.128");
+        factory.setHostName("172.16.191.102");
         factory.setPort(6379);
         factory.setTimeout(2000);
         factory.setDatabase(1);

@@ -17,8 +17,8 @@ public class DBUtils {
         Connection conn = null;
         String user   = "root";
         String passwd = "root@mariadb";
-        //String url = "jdbc:mariadb://172.16.191.102:3306/exercise?useUnicode=true&characterEncoding=UTF-8";
-        String url = "jdbc:mariadb://192.168.1.106:3306/exercise?useUnicode=true&characterEncoding=UTF-8";
+        String url = "jdbc:mariadb://172.16.191.102:3306/exercise?useUnicode=true&characterEncoding=UTF-8";
+//        String url = "jdbc:mariadb://192.168.1.106:3306/exercise?useUnicode=true&characterEncoding=UTF-8";
 
         try {
             //Class.forName("oracle.jdbc.driver.OracleDriver");

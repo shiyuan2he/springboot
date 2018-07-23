@@ -1,5 +1,4 @@
 package com.hsy.springboot.distributed.lock.service;
-
 import com.hsy.java.base.utils.ConcurrentMock;
 import com.hsy.springboot.distributed.lock.DistributedLockApplication;
 import org.junit.runner.RunWith;

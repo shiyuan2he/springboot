@@ -75,10 +75,11 @@ public class RedisConfig extends CachingConfigurerSupport {
     public JedisConnectionFactory jedisConnectionFactory() {
         //构造方法中注入RedisSentinelConfiguration对象
         JedisConnectionFactory factory = new JedisConnectionFactory(jedisPoolConfig());
-        factory.setHostName("192.168.1.106");
+        factory.setUsePool(true);
+        factory.setHostName("172.16.191.102");
         factory.setPort(6379);
         factory.setTimeout(2000);
-        factory.setDatabase(1);
+        factory.setDatabase(0);
         return factory;
     }
     /**
@@ -95,9 +96,9 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     private JedisPoolConfig jedisPoolConfig(){
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig() ;
-        jedisPoolConfig.setMaxTotal(500); // 设置最大实例总数
-        jedisPoolConfig.setMaxIdle(100);  // 设置一个pool最多有多少个状态为idle（空闲）的实例
-        jedisPoolConfig.setMinIdle(100);  // 设置一个pool最少有多少个状态为idle（空闲）的实例
+        jedisPoolConfig.setMaxTotal(50); // 设置最大实例总数
+        jedisPoolConfig.setMaxIdle(10);  // 设置一个pool最多有多少个状态为idle（空闲）的实例
+        jedisPoolConfig.setMinIdle(10);  // 设置一个pool最少有多少个状态为idle（空闲）的实例
         // 表示当borrow（引入）一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException
         jedisPoolConfig.setMaxWaitMillis(3 * 1000);
         // 再borrow一个redis实例的时候，是否提前进行alidate操作；true：得到的jedis实力均是可用的；
