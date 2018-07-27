@@ -1,5 +1,6 @@
 package com.hsy.springboot.redis.sentinel;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -16,9 +17,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class RedisSentinelApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(RedisSentinelApplication.class)
-                .web(true)
-                .run(args)
-                ;
+        SpringApplication.run(RedisSentinelApplication.class,args) ;
     }
 }
