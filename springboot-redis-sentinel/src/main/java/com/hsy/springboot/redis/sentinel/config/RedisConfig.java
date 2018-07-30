@@ -8,17 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.RedisNode;
-import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author heshiyuan
@@ -31,8 +25,8 @@ import java.util.Set;
  * @price ¥5    微信：hewei1109
  */
 @SuppressWarnings("Duplicates")
-//@Configuration
-//@PropertySource("classpath:config/redis.properties")
+@Configuration
+@PropertySource("classpath:config/redis.properties")
 public class RedisConfig {
     @Value("${redis.host}")
     private String host;
@@ -69,22 +63,10 @@ public class RedisConfig {
     @Value("${redis.pool.testWhileIdle}")
     private boolean testWhileIdle;
 
-    @Value("${redis.sentinel.host1}")
-    private String host1;
-    @Value("${redis.sentinel.port1}")
-    private Integer port1;
-
-    @Value("${redis.sentinel.host2}")
-    private String host2;
-    @Value("${redis.sentinel.port2}")
-    private Integer port2;
-    @Value("${redis.sentinel.host3}")
-    private String host3;
-    @Value("${redis.sentinel.port3}")
-    private Integer port3;
-    @Value("${redis.sentinel.master.name}")
-    private String masterName;
-
+    /**
+     * JedisPoolConfig 连接池
+     * @return
+     */
     @Bean
     public JedisPoolConfig jedisPoolConfig() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
@@ -106,37 +88,35 @@ public class RedisConfig {
         jedisPoolConfig.setTestWhileIdle(testWhileIdle);
         return jedisPoolConfig;
     }
-
-    @Bean
-    public RedisSentinelConfiguration sentinelConfiguration(){
-        RedisSentinelConfiguration redisSentinelConfiguration = new RedisSentinelConfiguration();
-        //配置matser的名称
-        RedisNode redisNode = new RedisNode(host, port);
-
-        redisNode.setName(masterName);
-        redisSentinelConfiguration.master(redisNode);
-        //配置redis的哨兵sentinel
-        RedisNode senRedisNode1 = new RedisNode(host1, port1);
-        RedisNode senRedisNode2 = new RedisNode(host2, port2);
-        RedisNode senRedisNode3 = new RedisNode(host3, port3);
-
-        Set<RedisNode> redisNodeSet = new HashSet<>();
-        redisNodeSet.add(senRedisNode1);
-        redisNodeSet.add(senRedisNode2);
-        redisNodeSet.add(senRedisNode3);
-        redisSentinelConfiguration.setSentinels(redisNodeSet);
-        return redisSentinelConfiguration;
-    }
     /**
-     * 配置工厂
-     * @param jedisPoolConfig
-     * @return
+     * 单机版配置 配置两个池子，即可实现redis的读写分离
+     * @Title: JedisConnectionFactory
+     * @param @param jedisPoolConfig
+     * @param @return
+     * @return JedisConnectionFactory
+     * @autor lpl
+     * @date 2018年2月24日
+     * @throws
      */
     @Bean
-    public JedisConnectionFactory jedisConnectionFactory(JedisPoolConfig jedisPoolConfig,RedisSentinelConfiguration sentinelConfig) {
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(sentinelConfig,jedisPoolConfig);
+    public JedisConnectionFactory jedisConnectionFactory(JedisPoolConfig jedisPoolConfig){
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(jedisPoolConfig);
+        jedisConnectionFactory.setUsePool(true);
+        //连接池
+        jedisConnectionFactory.setPoolConfig(jedisPoolConfig);
+        //IP地址
+        jedisConnectionFactory.setHostName(host);
+        //端口号
+        jedisConnectionFactory.setPort(port);
+        //如果Redis设置有密码
+        jedisConnectionFactory.setPassword(password);
+        // 设置数据库索引号
+        jedisConnectionFactory.setDatabase(database);
+        //客户端超时时间单位是毫秒
+        jedisConnectionFactory.setTimeout(timeout);
         return jedisConnectionFactory;
     }
+
     /**
      * 实例化 RedisTemplate 对象
      *
@@ -158,10 +138,23 @@ public class RedisConfig {
         //如果不配置Serializer，那么存储的时候缺省使用String，如果用User类型存储，那么会提示错误User can't cast to String！
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+        // GenericJackson2JsonRedisSerializer序列化方式
+        //redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+        //redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+        // Jackson2JsonRedisSerializer序列化方式
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+
+        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+        //set value serializer
+        redisTemplate.setDefaultSerializer(jackson2JsonRedisSerializer);
         // 开启事务
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.setConnectionFactory(factory);
+        redisTemplate.afterPropertiesSet();
     }
 }
