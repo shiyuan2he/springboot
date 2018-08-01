@@ -1,7 +1,7 @@
 spring:
-  datasource:
-    username: root
-    password: root@mariadb
-    driver-class-name: org.mariadb.jdbc.Driver
-    # url: jdbc:mariadb://172.16.191.102:3306/exercise?useUnicode=true&characterEncoding=UTF-8
-    url: jdbc:mariadb://172.16.191.102:3306/exercise?useUnicode=true&characterEncoding=UTF-8
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 172.16.191.102:26379,172.16.191.102:26380,172.16.191.102:26381
+server:
+  port: 10003
