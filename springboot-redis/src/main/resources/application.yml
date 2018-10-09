@@ -1,3 +1,18 @@
 spring:
     profiles:
       active: dev
+
+redis:
+  pool:
+    maxTotal: 50
+    maxActive: 50
+    maxIdle: 50
+    minIdle: 20
+    maxWaitMillis: 20000
+    testOnBorrow: true
+    testWhileIdle: true
+    testOnReturn: true
+    minEvictableIdleTimeMillis: 500
+    softMinEvictableIdleTimeMillis: 1000
+    timeBetweenEvictionRunsMillis: 1000
+    numTestsPerEvictionRun: 10

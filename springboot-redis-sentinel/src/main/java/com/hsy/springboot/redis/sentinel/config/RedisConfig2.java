@@ -24,6 +24,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * Copyright (c) 2018 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
+@SuppressWarnings("Duplicates")
 @Configuration
 @PropertySource("classpath:config/redis.properties")
 public class RedisConfig2 {

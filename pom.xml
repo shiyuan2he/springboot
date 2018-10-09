@@ -54,10 +54,22 @@
         <version.jackson.databind>2.9.6</version.jackson.databind>
         <version.c3p0.mchange>0.9.5.2</version.c3p0.mchange>
         <version.jedis>2.9.0</version.jedis>
+        <version.lombok>1.18.2</version.lombok>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.hsy.java</groupId>
+                <artifactId>java-cache-redis</artifactId>
+                <version>${version.hsy.java}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${version.lombok}</version>
+                <scope>provided</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-log4j</artifactId>
