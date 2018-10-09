@@ -89,7 +89,11 @@ public class RedisConfig {
         return jedisPoolConfig;
     }
     /**
+<<<<<<< HEAD
      * 单机版配置
+=======
+     * 单机版配置 配置两个池子，即可实现redis的读写分离
+>>>>>>> 78e513fc6f32847d9da198bf6b6de39d0c7aff0f
      * @Title: JedisConnectionFactory
      * @param @param jedisPoolConfig
      * @param @return
