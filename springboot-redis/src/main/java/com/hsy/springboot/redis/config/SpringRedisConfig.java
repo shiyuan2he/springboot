@@ -34,8 +34,9 @@ import java.lang.reflect.Method;
 @SuppressWarnings("Duplicates")
 @Configuration
 @EnableAutoConfiguration
+@EnableCaching
 @Component
-public class SpringRedisConfig{
+public class SpringRedisConfig extends CachingConfigurerSupport {
 
     @Autowired
     private RedisConfig redisConfig;
@@ -49,7 +50,7 @@ public class SpringRedisConfig{
      * 还有一种简答的设置方式，改变defaultSerializer对象的实现。
      * @return
      */
-    @Bean
+    @Bean(value = "redisTemplate")
     public RedisTemplate<String, Object> redisTemplate() {
         //StringRedisTemplate的构造方法中默认设置了stringSerializer
         RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -68,12 +69,12 @@ public class SpringRedisConfig{
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
         //set value serializer
         template.setDefaultSerializer(jackson2JsonRedisSerializer);
-
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.setConnectionFactory(jedisConnectionFactory());
         template.afterPropertiesSet();
         return template;
     }
-    @Bean
+    @Bean(value = "stringRedisTemplate")
     public StringRedisTemplate stringRedisTemplate(){
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(jedisConnectionFactory());
@@ -97,6 +98,17 @@ public class SpringRedisConfig{
         factory.setPassword(redisConfig.getPassword());
         return factory;
     }
+    /**
+     * 设置RedisCacheManager
+     * 使用cache注解管理redis缓存
+     *
+     * @return
+     */
+    @Bean
+    public RedisCacheManager cacheManager() {
+        RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate());
+        return redisCacheManager;
+    }
 
     private JedisPoolConfig jedisPoolConfig(){
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig() ;
@@ -114,5 +126,27 @@ public class SpringRedisConfig{
         jedisPoolConfig.setTimeBetweenEvictionRunsMillis(redisPoolConfig.getTimeBetweenEvictionRunsMillis()) ;
         jedisPoolConfig.setNumTestsPerEvictionRun(redisPoolConfig.getNumTestsPerEvictionRun());
         return jedisPoolConfig ;
+    }
+
+    /**
+     * 自定义生成redis-key
+     *
+     * @return
+     */
+    @Override
+    public KeyGenerator keyGenerator() {
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object o, Method method, Object... objects) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(o.getClass().getName()).append(".");
+                sb.append(method.getName()).append(".");
+                for (Object obj : objects) {
+                    sb.append(obj.toString());
+                }
+                System.out.println("keyGenerator=" + sb.toString());
+                return sb.toString();
+            }
+        };
     }
 }
