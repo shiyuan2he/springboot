@@ -3,24 +3,18 @@ package com.hsy.springboot.redis.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hsy.java.cache.redis.spring.object.impl.*;
+import com.hsy.java.cache.redis.spring.string.impl.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.cache.annotation.CachingConfigurerSupport;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPoolConfig;
-
-import java.lang.reflect.Method;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -31,10 +25,8 @@ import java.lang.reflect.Method;
  * Copyright (c) 2017 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-@SuppressWarnings("Duplicates")
 @Configuration
-@EnableAutoConfiguration
-@Component
+@Slf4j
 public class SpringRedisConfig{
 
     @Autowired
@@ -49,8 +41,9 @@ public class SpringRedisConfig{
      * 还有一种简答的设置方式，改变defaultSerializer对象的实现。
      * @return
      */
-    @Bean
+    @Bean(value = "redisTemplate")
     public RedisTemplate<String, Object> redisTemplate() {
+        log.info("正在初始化stringRedisTemplate");
         //StringRedisTemplate的构造方法中默认设置了stringSerializer
         RedisTemplate<String, Object> template = new RedisTemplate<>();
 
@@ -68,13 +61,14 @@ public class SpringRedisConfig{
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
         //set value serializer
         template.setDefaultSerializer(jackson2JsonRedisSerializer);
-
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.setConnectionFactory(jedisConnectionFactory());
         template.afterPropertiesSet();
         return template;
     }
-    @Bean
+    @Bean(value = "stringRedisTemplate")
     public StringRedisTemplate stringRedisTemplate(){
+        log.info("正在初始化stringValueOperationsBase。。。");
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(jedisConnectionFactory());
         stringRedisTemplate.afterPropertiesSet();
@@ -97,7 +91,6 @@ public class SpringRedisConfig{
         factory.setPassword(redisConfig.getPassword());
         return factory;
     }
-
     private JedisPoolConfig jedisPoolConfig(){
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig() ;
         jedisPoolConfig.setMaxTotal(redisPoolConfig.getMaxTotal()); // 设置最大实例总数
@@ -114,5 +107,107 @@ public class SpringRedisConfig{
         jedisPoolConfig.setTimeBetweenEvictionRunsMillis(redisPoolConfig.getTimeBetweenEvictionRunsMillis()) ;
         jedisPoolConfig.setNumTestsPerEvictionRun(redisPoolConfig.getNumTestsPerEvictionRun());
         return jedisPoolConfig ;
+    }
+    // ============//
+    @Bean
+    public StringValueOperationsBase stringValueOperationsBase(){
+        log.info("正在初始化stringValueOperationsBase。。。");
+        return new StringValueOperationsBase() {
+            @Override
+            public StringRedisTemplate getStringRedisTemplate() {
+                return stringRedisTemplate();
+            }
+        };
+    }
+    @Bean
+    public StringHashOperationsBase stringHashOperationsBase(){
+        log.info("正在初始化stringHashOperationsBase。。。");
+        return new StringHashOperationsBase() {
+            @Override
+            public StringRedisTemplate getStringRedisTemplate() {
+                return stringRedisTemplate();
+            }
+        };
+    }
+    @Bean
+    public StringSetOperationsBase stringSetOperationsBase(){
+        log.info("正在初始化stringSetOperationsBase。。。");
+        return new StringSetOperationsBase() {
+            @Override
+            public StringRedisTemplate getStringRedisTemplate() {
+                return stringRedisTemplate();
+            }
+        };
+    }
+    @Bean
+    public StringZSetOperationsBase stringZSetOperationsBase(){
+        log.info("正在初始化stringZSetOperationsBase。。。");
+        return new StringZSetOperationsBase() {
+            @Override
+            public StringRedisTemplate getStringRedisTemplate() {
+                return stringRedisTemplate();
+            }
+        };
+    }
+    @Bean
+    public StringListOperationsBase stringListOperationsBase(){
+        log.info("正在初始化stringListOperationsBase。。。");
+        return new StringListOperationsBase() {
+            @Override
+            public StringRedisTemplate getStringRedisTemplate() {
+                return stringRedisTemplate();
+            }
+        };
+    }
+    // ============//
+    @Bean
+    public ValueOperationsBase valueOperationsBase(){
+        log.info("正在初始化valueOperationsBase。。。");
+        return new ValueOperationsBase() {
+            @Override
+            public RedisTemplate getRedisTemplate() {
+                return redisTemplate();
+            }
+        };
+    }
+    @Bean
+    public HashOperationsBase hashOperationsBase(){
+        log.info("正在初始化hashOperationsBase。。。");
+        return new HashOperationsBase() {
+            @Override
+            public RedisTemplate getRedisTemplate() {
+                return redisTemplate();
+            }
+        };
+    }
+    @Bean
+    public SetOperationsBase setOperationsBase(){
+        log.info("正在初始化setOperationsBase。。。");
+        return new SetOperationsBase() {
+            @Override
+            public RedisTemplate getRedisTemplate() {
+                return redisTemplate();
+            }
+        };
+    }
+    @Bean
+    public ZSetOperationsBase zSetOperationsBase(){
+        log.info("正在初始化zSetOperationsBase。。。");
+        return new ZSetOperationsBase() {
+            @Override
+            public RedisTemplate getRedisTemplate() {
+                return redisTemplate();
+            }
+        };
+    }
+    @Bean
+    public ListOperationsBase listOperationsBase(){
+        log.info("正在初始化listOperationsBase。。。");
+        return new ListOperationsBase() {
+            @Override
+            public RedisTemplate getRedisTemplate() {
+                return redisTemplate();
+            }
+        };
     }
 }

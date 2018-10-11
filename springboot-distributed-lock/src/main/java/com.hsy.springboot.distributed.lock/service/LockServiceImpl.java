@@ -1,7 +1,4 @@
 package com.hsy.springboot.distributed.lock.service;
-
-import com.hsy.java.util.cache.redis.impl.AbstractSpringRedisLock;
-import com.hsy.springboot.distributed.lock.dao.RedisRepository;
 import com.hsy.springboot.distributed.lock.dao.TLockDaoImpl;
 import com.hsy.springboot.distributed.lock.dao.TRedisLockImpl;
 import com.hsy.springboot.distributed.lock.dao.TStockDaoImpl;
@@ -25,7 +22,6 @@ public class LockServiceImpl{
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired private TLockDaoImpl lockDao;
     @Autowired private TStockDaoImpl stockDao;
-    @Autowired private RedisRepository redisRepository;
     @Autowired private TRedisLockImpl redisLock;
     
     /**
@@ -63,7 +59,7 @@ public class LockServiceImpl{
     public void redisLock(){
         String key = "TO:lock";
         while (true){
-            if(redisLock.tryLock(key, 300 * 1000)){
+           /* if(redisLock.tryLock(key, 300 * 1000)){
                 logger.info("进入lock区");
                 if (stockDao.getCount(1l) > 0) {
                     // 减库存
@@ -75,7 +71,7 @@ public class LockServiceImpl{
                 }
             }else{
                 logger.info("没有拿到锁，请求返回");
-            }
+            }*/
         }
     }
 }

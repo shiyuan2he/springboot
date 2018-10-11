@@ -7,7 +7,7 @@ redis:
     maxTotal: 1024
     maxActive: 1024
     maxIdle: 64
-    minIdle: 8
+    minIdle: 16
     maxWaitMillis: 20000
     testOnBorrow: true
     testWhileIdle: true

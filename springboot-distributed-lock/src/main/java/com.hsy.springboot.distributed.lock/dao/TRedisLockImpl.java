@@ -1,15 +1,8 @@
 package com.hsy.springboot.distributed.lock.dao;
 
-import com.hsy.java.util.cache.redis.impl.AbstractSpringRedisLock;
-import com.hsy.springboot.distributed.lock.utils.DBUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -21,11 +14,11 @@ import java.sql.SQLException;
  * @price ¥5    微信：hewei1109
  */
 @Repository(value = "redisLock")
-public class TRedisLockImpl extends AbstractSpringRedisLock {
-    @Autowired
+public class TRedisLockImpl{
+    /*@Autowired
     RedisTemplate<String, Object> redisTemplate;
     @Override
     public RedisTemplate<String, Object> getRedisTemplate() {
         return redisTemplate;
-    }
+    }*/
 }
