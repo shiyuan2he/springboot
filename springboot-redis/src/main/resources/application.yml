@@ -4,10 +4,10 @@ spring:
 
 redis:
   pool:
-    maxTotal: 50
-    maxActive: 50
-    maxIdle: 50
-    minIdle: 20
+    maxTotal: 1024
+    maxActive: 1024
+    maxIdle: 64
+    minIdle: 8
     maxWaitMillis: 20000
     testOnBorrow: true
     testWhileIdle: true
