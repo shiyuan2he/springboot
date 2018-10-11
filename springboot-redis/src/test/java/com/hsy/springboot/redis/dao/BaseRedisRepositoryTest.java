@@ -15,10 +15,10 @@ import java.util.Map;
  */
 public class BaseRedisRepositoryTest {
 
-    public Map<Object,String> generateMapForString() {
-        Map<Object, String> demoMap = new HashMap<>();
+    public Map<String, String> generateMapForString() {
+        Map<String, String> demoMap = new HashMap<>();
         for(int i=0;i<10;i++){
-            demoMap.put(i, "value "+i);
+            demoMap.put(i+"", "value "+i);
         }
         return demoMap;
     }

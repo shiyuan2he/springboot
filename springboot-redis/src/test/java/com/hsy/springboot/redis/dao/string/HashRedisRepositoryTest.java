@@ -1,5 +1,7 @@
 package com.hsy.springboot.redis.dao.string;
 
+import com.hsy.java.cache.redis.spring.object.impl.ValueOperationsBase;
+import com.hsy.java.cache.redis.spring.string.impl.StringHashOperationsBase;
 import com.hsy.springboot.redis.SpringBootRedisApplication;
 import com.hsy.springboot.redis.dao.BaseRedisRepositoryTest;
 import org.junit.Test;
@@ -20,13 +22,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootRedisApplication.class)
 public class HashRedisRepositoryTest extends BaseRedisRepositoryTest {
-    @Autowired private HashRedisRepository hashStringRepository;
+    @Autowired private ValueOperationsBase valueOperationsBase;
+    @Autowired private StringHashOperationsBase stringHashOperationsBase;
 
-    private String hashKey = "hash:" ;
+    private String hashKey = "hash" ;
+    private String valueKey = "value" ;
     @Test
     public void testPutAll(){
-        hashStringRepository.putAll(hashKey, generateMapForString(), true);
+        stringHashOperationsBase.putAll(hashKey, generateMapForString());
     }
-
+    @Test
+    public void testPut(){
+        valueOperationsBase.set(valueKey, "test");
+    }
 
 }
