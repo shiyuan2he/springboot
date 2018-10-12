@@ -41,6 +41,7 @@
         <module>springboot-redis-sentinel</module>
         <module>springboot-log4j2</module>
         <module>springboot-distributed-lock</module>
+        <module>springboot-canal</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
