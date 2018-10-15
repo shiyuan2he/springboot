@@ -36,7 +36,7 @@ public class CacheDao {
     @CachePut(value = "concurrentMapCacheKey")
     public long save() {
         long timestamp = new Timestamp(System.currentTimeMillis()).getTime();
-        System.out.println("进行缓存：" + timestamp);
+        System.out.println("刷新缓存：" + timestamp);
         return timestamp;
     }
 
@@ -48,7 +48,14 @@ public class CacheDao {
         System.out.println("删除缓存");
     }
 
+    @Cacheable(value = "userId")
     public Map<String, Object> getUserInfo(String userId){
+        try {
+            // 阻塞三秒，模拟查询数据库耗时
+            Thread.sleep(3 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Map<String, Object> returnMap = new HashMap<>();
         returnMap.put("userId", userId);
         returnMap.put("userName", "张三");
@@ -59,5 +66,23 @@ public class CacheDao {
         innerMap.put("city", "信阳");
         returnMap.put("address", innerMap);
         return returnMap;
+    }
+
+    @CachePut(value = "userId")
+    public Map<String, Object> updateUserInfo(String userId, String userName){
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put("userId", userId);
+        returnMap.put("userName", userName);
+        Map<String, Object> innerMap = new HashMap<>();
+        innerMap.put("street", "中山路111号");
+        innerMap.put("country", "中国");
+        innerMap.put("province", "河南");
+        innerMap.put("city", "信阳");
+        returnMap.put("address", innerMap);
+        return returnMap;
+    }
+    @CacheEvict(value = "userId")
+    public void deleteUserInfo() {
+        System.out.println("删除缓存");
     }
 }
