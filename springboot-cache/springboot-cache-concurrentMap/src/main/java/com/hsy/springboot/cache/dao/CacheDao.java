@@ -6,6 +6,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 @Repository(value = "cacheDao")
 public class CacheDao {
@@ -44,5 +46,18 @@ public class CacheDao {
     @CacheEvict(value = "concurrentMapCacheKey")
     public void delete() {
         System.out.println("删除缓存");
+    }
+
+    public Map<String, Object> getUserInfo(String userId){
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put("userId", userId);
+        returnMap.put("userName", "张三");
+        Map<String, Object> innerMap = new HashMap<>();
+        innerMap.put("street", "中山路111号");
+        innerMap.put("country", "中国");
+        innerMap.put("province", "河南");
+        innerMap.put("city", "信阳");
+        returnMap.put("address", innerMap);
+        return returnMap;
     }
 }
