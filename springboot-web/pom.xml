@@ -9,12 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-cache</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>springboot-cache-concurrentMap</module>
-        <module>springboot-cache-redis</module>
-        <module>springboot-redis</module>
-        <module>springboot-redis-sentinel</module>
-    </modules>
+    <artifactId>springboot-web</artifactId>
+
+
 </project>

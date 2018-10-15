@@ -20,7 +20,6 @@
         <module>springboot-hibernate</module>
         <module>springboot-mybatis</module>
         <module>springboot-rpc-api</module>
-        <module>springboot-redis</module>
         <module>springboot-swagger</module>
         <module>springboot-cache</module>
         <module>springboot-rabbitmq</module>
@@ -38,12 +37,12 @@
         <module>springboot-interceptor</module>
         <module>springboot-runner</module>
         <module>springboot-logback</module>
-        <module>springboot-redis-sentinel</module>
         <module>springboot-log4j2</module>
         <module>springboot-distributed-lock</module>
         <module>springboot-canal</module>
         <module>springboot-canal-client</module>
         <module>springboot-oauth2</module>
+        <module>springboot-web</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
