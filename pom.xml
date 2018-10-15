@@ -39,7 +39,6 @@
         <module>springboot-logback</module>
         <module>springboot-log4j2</module>
         <module>springboot-distributed-lock</module>
-        <module>springboot-canal</module>
         <module>springboot-canal-client</module>
         <module>springboot-oauth2</module>
         <module>springboot-web</module>
@@ -58,8 +57,14 @@
         <version.c3p0.mchange>0.9.5.2</version.c3p0.mchange>
         <version.jedis>2.9.0</version.jedis>
         <version.lombok>1.18.2</version.lombok>
+        <version.junit>4.12</version.junit>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
     <dependencyManagement>
         <dependencies>
             <dependency>

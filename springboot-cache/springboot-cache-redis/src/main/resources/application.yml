@@ -1,0 +1,4 @@
+spring:
+  profile:
+    active: home
+    # active: company
