@@ -1,4 +1,6 @@
 package com.hsy.springboot.redis.dao.string;
+import com.hsy.java.cache.redis.spring.object.impl.ValueOperationsBase;
+import com.hsy.java.cache.redis.spring.string.impl.StringHashOperationsBase;
 import com.hsy.springboot.redis.SpringBootRedisApplication;
 import com.hsy.springboot.redis.dao.BaseRedisRepositoryTest;
 import org.junit.Test;

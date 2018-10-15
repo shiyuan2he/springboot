@@ -44,7 +44,7 @@ public class RedisUtil {
         config.setMaxWaitMillis(MAX_WAIT);
         //
         config.setTestOnBorrow(false);
-        pool = new JedisPool(config, ADDR, PORT, 1000);
+        pool = new JedisPool(config, ADDR, PORT, 1000, AUTH);
     }
 
     /**

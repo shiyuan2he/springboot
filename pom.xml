@@ -42,6 +42,8 @@
         <module>springboot-log4j2</module>
         <module>springboot-distributed-lock</module>
         <module>springboot-canal</module>
+        <module>springboot-canal-client</module>
+        <module>springboot-oauth2</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>

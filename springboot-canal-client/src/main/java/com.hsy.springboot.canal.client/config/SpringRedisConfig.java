@@ -1,9 +1,9 @@
-package com.hsy.springboot.canal.config;
-import com.askingdata.y.cache.redis.spring.object.impl.*;
-import com.askingdata.y.cache.redis.spring.string.impl.*;
+package com.hsy.springboot.canal.client.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hsy.java.cache.redis.spring.object.impl.*;
+import com.hsy.java.cache.redis.spring.string.impl.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
