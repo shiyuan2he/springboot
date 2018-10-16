@@ -1,4 +1,4 @@
-package com.hsy.springboot.hibernate.entity;
+package com.hsy.springboot.redis.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
-@Entity(name = "t_exercise_zone_test")
-public class TExerciseZone implements Serializable{
+
+@Entity(name = "t_zone")
+public class TZone implements Serializable{
     @Id
     @GeneratedValue
     @Column()
@@ -73,8 +74,7 @@ public class TExerciseZone implements Serializable{
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
-    public TExerciseZone(Integer code, String name, Long parentId) {
+    public TZone(Integer code, String name, Long parentId) {
         this.code = code;
         this.name = name;
         this.parentId = parentId;

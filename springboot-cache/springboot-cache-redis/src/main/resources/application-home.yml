@@ -11,3 +11,12 @@ spring:
       max-idle: 8
       min-idle: 0
       max-wait: -1
+  datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://192.168.216.129:3306/exercise?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: root@mariadb
+    jpa:
+      hibernate:
+        ddl-auto: update
+        show-sql: true
