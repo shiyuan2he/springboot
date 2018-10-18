@@ -1,5 +1,6 @@
 spring:
-  redis:
+  redis: # Spring Boot会在侦测到存在Redis的依赖并且Redis的配置是可用的情况下，
+         # 使用RedisCacheManager初始化CacheManager。
     host: 192.168.1.100
     port: 6379
     database: 0
@@ -16,5 +17,5 @@ spring:
     password: root@mariadb
   jpa:
     hibernate:
-    ddl-auto: update
+      ddl-auto: update
     show-sql: true

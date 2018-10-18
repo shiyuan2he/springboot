@@ -74,6 +74,9 @@ public class TZone implements Serializable{
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    public TZone() {}
+
     public TZone(Integer code, String name, Long parentId) {
         this.code = code;
         this.name = name;

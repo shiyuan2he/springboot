@@ -7,35 +7,31 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootRedisCacheApplication.class)
-public class UserRepositoryTest {
+public class TZoneRepositoryTest {
     @Autowired
-    private TExerciseZoneRepository exerciseZoneRepository;
-
-    @Autowired
-    private CacheManager cacheManager;
-
+    private TZoneRepository tZoneRepository;
     @Before
     public void before() {
-        exerciseZoneRepository.save(new TZone(1000000,"AAA", 0l));
+        tZoneRepository.save(new TZone(1000001,"AAA", 1000035l));
     }
 
     @Test
     public void test() throws Exception {
-        TZone u1 = exerciseZoneRepository.findByCode(1000000);
+        TZone u1 = tZoneRepository.findByCode(1000001);
         System.out.println("第一次查询：" + u1.getSortId());
 
-        TZone u2 = exerciseZoneRepository.findByCode(1000000);
+        TZone u2 = tZoneRepository.findByCode(1000001);
         System.out.println("第二次查询：" + u2.getSortId());
 
         u1.setSortId(20);
-        exerciseZoneRepository.save(u1);
-        TZone u3 = exerciseZoneRepository.findByCode(1000000);
+        tZoneRepository.save(u1);
+        TZone u3 = tZoneRepository.findByCode(1000001);
         System.out.println("第三次查询：" + u3.getSortId());
+        tZoneRepository.delete(u3);
     }
 
 }
