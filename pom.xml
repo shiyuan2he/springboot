@@ -42,7 +42,6 @@
         <module>springboot-canal-client</module>
         <module>springboot-oauth2</module>
         <module>springboot-web</module>
-        <module>springboot-statemachine</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
@@ -59,8 +58,15 @@
         <version.jedis>2.9.0</version.jedis>
         <version.lombok>1.18.2</version.lombok>
         <version.junit>4.12</version.junit>
+        <version.statemachine>2.0.3.RELEASE</version.statemachine>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${version.lombok}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -72,12 +78,6 @@
                 <groupId>com.hsy.java</groupId>
                 <artifactId>java-cache-redis</artifactId>
                 <version>${version.hsy.java}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${version.lombok}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -204,7 +204,11 @@
                 <artifactId>jedis</artifactId>
                 <version>${version.jedis}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.statemachine</groupId>
+                <artifactId>spring-statemachine-core</artifactId>
+                <version>${version.statemachine}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
