@@ -42,6 +42,7 @@
         <module>springboot-canal-client</module>
         <module>springboot-oauth2</module>
         <module>springboot-web</module>
+        <module>springboot-statemachine</module>
     </modules>
     <properties>
         <version.build.java>1.8</version.build.java>
