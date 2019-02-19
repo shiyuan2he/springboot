@@ -6,8 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author heshiyuan
@@ -21,12 +20,27 @@ import java.util.List;
  */
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService {
+
+    private final static Set<User> users = new HashSet<>();
+
+    static {
+        users.add(new User("aa", "test-user1", getAuthority()));
+        users.add(new User("bb", "test-user2", getAuthority()));
+        users.add(new User("cc", "test-user3", getAuthority()));
+        users.add(new User("dd", "test-user4", getAuthority()));
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User(username, "123456", getAuthority());
+        Optional<User> user = users.stream()
+                .filter((u) -> u.getUsername().equals(username))
+                .findFirst();
+        if (!user.isPresent())
+            throw new UsernameNotFoundException("there's no user founded!");
+        else
+            return user.get();
     }
 
-    private List getAuthority() {
+    private static List getAuthority() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 }
