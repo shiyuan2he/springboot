@@ -1,7 +1,6 @@
-package com.hsy.springboot.oauth2.client.config;
-
-import com.hsy.springboot.oauth2.client.handler.CustomAuthenticationEntryPoint;
-import com.hsy.springboot.oauth2.client.handler.CustomLogoutSuccessHandler;
+package com.hsy.springboot.oauth.server.config;
+import com.hsy.springboot.oauth.server.handler.CustomAuthenticationEntryPoint;
+import com.hsy.springboot.oauth.server.handler.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,7 +44,7 @@ public class Oauth2ClientResourceConfig extends ResourceServerConfigurerAdapter 
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**").authenticated() //配置users访问控制，必须认证过后才可以访问
+                .antMatchers("/users/**").authenticated() //配置users访问控制，必须认证过后才可以访问
                 .and()
                 .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint())  //认证失败的业务处理
                 .and()

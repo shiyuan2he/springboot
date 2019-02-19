@@ -18,7 +18,6 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.annotation.Resource;
 
@@ -35,32 +34,43 @@ import javax.annotation.Resource;
 @Configuration
 @EnableAuthorizationServer
 public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
-
-    private static final String CLIEN_ID_ONE = "client_1";  //客户端1 用来标识客户的Id
-    private static final String CLIEN_ID_TWO = "client_2";  //客户端2
-    private static final String CLIEN_ID_THREE = "client_3";  //客户端3
-    private static final String CLIENT_SECRET = "secret";   //secret客户端安全码
-    private static final String GRANT_TYPE_PASSWORD = "password";   // 密码模式授权模式
-    private static final String AUTHORIZATION_CODE = "authorization_code"; //授权码模式  授权码模式使用到了回调地址，是最为复杂的方式，通常网站中经常出现的微博，qq第三方登录，都会采用这个形式。
-    private static final String REFRESH_TOKEN = "refresh_token";  //
-    private static final String IMPLICIT = "implicit"; //简化授权模式
-    private static final String GRANT_TYPE = "client_credentials";  //客户端模式
+    //客户端1 用来标识客户的Id 客户端模式授权
+    private static final String CLIEN_ID_ONE = "client_1";
+    //客户端2 密码模式授权
+    private static final String CLIEN_ID_TWO = "client_2";
+    //客户端3 授权码模式
+    private static final String CLIEN_ID_THREE = "client_3";
+    //secret客户端安全码
+    private static final String CLIENT_SECRET = "secret";
+    // 密码模式授权
+    private static final String GRANT_TYPE_PASSWORD = "password";
+    /**
+     * 授权码模式  授权码模式使用到了回调地址，是最为复杂的方式，通常网站中经常出现的微博，qq第三方登录，都会采用这个形式。
+     */
+    private static final String AUTHORIZATION_CODE = "authorization_code";
+    //简化授权模式
+    private static final String IMPLICIT = "implicit";
+    private static final String REFRESH_TOKEN = "refresh_token";
+    //客户端模式
+    private static final String GRANT_TYPE_CLIENT = "client_credentials";
     private static final String SCOPE_READ = "read";
     private static final String SCOPE_WRITE = "write";
     private static final String TRUST = "trust";
-    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 1*60*60;          //
-    private static final int FREFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;        //
-    private static final String RESOURCE_ID = "*";    //指定哪些资源是需要授权验证的
+    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 1*60*60;
+    private static final int FREFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;
+    //指定哪些资源是需要授权验证的
+    private static final String RESOURCE_ID = "*";
 
 
     @Autowired
     RedisConnectionFactory redisConnectionFactory;
 
+    //认证方式
     @Autowired
-    private AuthenticationManager authenticationManager;   //认证方式
+    private AuthenticationManager authenticationManager;
+
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
-
 
     @Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
@@ -69,7 +79,7 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
         configurer.inMemory()  // 使用in-memory存储
                 .withClient(CLIEN_ID_ONE)    //client_id用来标识客户的Id  客户端1
                 .resourceIds(RESOURCE_ID)
-                .authorizedGrantTypes(GRANT_TYPE, REFRESH_TOKEN)  //允许授权类型   客户端授权模式
+                .authorizedGrantTypes(GRANT_TYPE_CLIENT, REFRESH_TOKEN)  //允许授权类型   客户端授权模式
                 .scopes(SCOPE_READ,SCOPE_WRITE)  //允许授权范围
                 .authorities("oauth2")  //客户端可以使用的权限
                 .secret(secret)  //secret客户端安全码
@@ -84,7 +94,6 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 .secret(secret)  //secret客户端安全码
                 .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)    //token 时间秒
                 .refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS); //刷新token 时间 秒
-
     }
 
     @Override
@@ -97,7 +106,6 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 //                .tokenStore(new RedisTokenStore(redisConnectionFactory))
                 .reuseRefreshTokens(true);  //开启刷新token
     }
-
 
     /**
      * 认证服务器的安全配置
